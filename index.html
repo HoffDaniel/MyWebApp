@@ -30,7 +30,7 @@
             </nav>
             <div class="header-text">
                 <p>Graduate</p>
-                <h1>Oh hey! I am <span> Daniel</span><br> Hoffmann from Spain, Germany, and Chile</h1>
+                <h1>Oh hey! <br> I am <span> Daniel Hoffmann </span><br> from Spain, Germany, and Chile</h1>
             </div>
 
         </div>
@@ -46,15 +46,28 @@
                     <h1 class="sub-title">About Me</h1>
                     <p>This webpage is a piece of me</p>
                     <div class="tab-titles">
-                        <div class="tab-links active-link">Educations</div>
-                        <div class="tab-links">Skills</div>
-                        <div class="tab-links">Experience</div>
+                        <div class="tab-links active-link" onclick="opentab('education')">Education</div>
+                        <div class="tab-links" onclick="opentab('skills')">Skills</div>
+                        <div class="tab-links" onclick="opentab('experience')">Experience</div>
                     </div>
-                    <div class="tab-contents">
+                    <div class="tab-contents active-tab" id="education">
                         <ul>
-                            <li><span>Software Development</span></li>
-                            <li><span>Intelligent Systems Development </span></li>
-                            <li><span>Computer Sciences, Mobile Robots, AI</span></li>
+                            <li><span>Software Development</span><br> Online Booking Management System, Algorithm Comparison System</li>
+                            <li><span>Intelligent Systems Development </span><br> Game AI and Mobile Robots behaviour, <br>Fuzzy Systems, <br> Neural Networks </li>                         
+                            
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="skills">
+                        <ul>
+                            <li><span>Languages</span><br> Spanish, German, French, English</li>
+                            <li><span>Programming Languages </span><br> C++, C#, JavaScript </li>  
+                            <li><span>Programming Languages </span><br> C++, C#, JavaScript </li> 
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>Suntrace</span><br> Solar Energy Consultant Intern </li>
+                            <li><span>Grosvenor Services</span><br> Part-time work at an Amazon Warehouse </li>                         
                             
                         </ul>
                     </div>
@@ -64,5 +77,21 @@
         </div>
     </div>
 
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    
+    </script>
 </body>
 </html>
