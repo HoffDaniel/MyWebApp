@@ -1,3 +1,4 @@
+//ChatGPT
 const canvas = document.getElementById("sand-canvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -12,6 +13,15 @@ window.addEventListener('mousemove', function(e){
   mouseX = e.x;
   mouseY = e.y;
 });
+let isMouseInsideCanvas
+// add event listeners
+canvas.addEventListener("mouseenter", () => {
+    isMouseInsideCanvas = true;
+  });
+  
+  canvas.addEventListener("mouseleave", () => {
+    isMouseInsideCanvas = false;
+  });
 
 // create SandParticle class
 class SandParticle {
@@ -42,7 +52,8 @@ class SandParticle {
 
   update() {
     // apply repelling force from mouse cursor
-    this.applyRepellentForce(mouseX, mouseY, 100, 0.05);
+    if(!isMouseInsideCanvas) return;
+    this.applyRepellentForce(mouseX, mouseY, 100, 0.25);
 
     // update position and velocity based on acceleration
     this.vx += this.ax;
@@ -70,29 +81,23 @@ class SandParticle {
 
 // create particles
 function init() {
-  particlesArray = [];
-  const rows = 10;
-  const cols = 10;
-  const gap = 20;
-  const xOffset = canvas.width / 2 - (cols - 1) * gap / 2;
-  const yOffset = canvas.height / 2 - (rows - 1) * gap / 2;
-
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
-      const x = xOffset + j * gap;
-      const y = yOffset + i * gap;
-      const radius = 3;
-      const color = "#c2b280";
-      particlesArray.push(new SandParticle(x, y, radius, color));
+    particlesArray = [];
+    for (let i = 0; i < 10000; i++) {
+        const radius = Math.random() * 3;
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const color = "#c2b280";
+        particlesArray.push(new SandParticle(x, y, radius, color));
     }
-  }
+ 
+  
 }
 
 // animate particles
 function animate() {
   requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#e6d4b8";
+  //tx.fillStyle = "#e6d4b8";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   particlesArray.forEach((particle) => {
     particle.update();
