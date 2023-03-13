@@ -51,8 +51,10 @@ class SandParticle {
   }
 
   update() {
-    // apply repelling force from mouse cursor
-    if(!isMouseInsideCanvas) return;
+    //If dont want to influence the particles when outside canvas
+    //if(!isMouseInsideCanvas) return;
+
+    // apply repelling force from mouse cursor    
     this.applyRepellentForce(mouseX, mouseY, 100, 0.25);
 
     // update position and velocity based on acceleration
@@ -82,7 +84,7 @@ class SandParticle {
 // create particles
 function init() {
     particlesArray = [];
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 1000; i++) {
         const radius = Math.random() * 3;
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;

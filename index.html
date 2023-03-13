@@ -16,25 +16,27 @@
             <b>Site</b> <u>Under</u> <i>Construction</i>.
         </p>
     </div>-->
-
+    <section id="sand-section">
+        
+    </section>
     <div id="header">
         <div class="container">
             <nav>
                 <img src="images/MOO - Copy.png" class="logo">
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">SandBox</a></li>
-                    <li><a href="#">Projects</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="/view/sandbox.html">SandBox</a></li>
+                    <li><a href="#">Projectz</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-text">
-                <h1>Oh hey! <br> I am <span> Daniel Hoffmann </span><br> Welcome to my space!</h1>
+                <h1>Oh hey! <br> I am <span> Daniel Hoffmann </span> Welcome to my space!</h1>
                 <div class="gradient-text">
-                    <div class="gradient-spain"> Spain</div> 
-                    <div class="gradient-germany"> Germany</div>
-                    <div class="gradient-chile"> Chile</div>
+                    <div class="gradient-spain"> Spanish</div> 
+                    <div class="gradient-germany"> German</div>
+                    <div class="gradient-chile"> Chilean</div>
                 </div>
             </div>
 
@@ -103,11 +105,28 @@
             </div>
         </div>
     </div>
+    <!--
     <section id="sand-section">
         <canvas id="sand-canvas"></canvas>
     </section>
     <script src="Test.js"></script>
+    -->
 
+    <script>
+        var navLinks = document.querySelectorAll('nav a');
+    
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].addEventListener('click', function(event) {
+                
+                var targetId = this.getAttribute('href'); // get the ID of the target section
+                var targetSection = document.querySelector(targetId); // get the target section element
+                if(targetSection){
+                    event.preventDefault(); // prevent the default behavior of the link
+                    targetSection.scrollIntoView({ behavior: 'smooth' }); // scroll to the target section smoothly
+                }
+            });
+        }
+    </script>
 
     <script>
         var tablinks = document.getElementsByClassName("tab-links");

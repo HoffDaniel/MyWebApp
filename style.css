@@ -17,16 +17,20 @@ body{
 */
 #header{
     width: 100%;
-    height: 100vh;
+    height: 500px;
+    position: relative;
+    left: 100px;
     background-image: url(images/Background1.png);
     background-size: cover;
     background-position: center;
 
 }
 .container{
-    padding: 10px 10%;
+    padding: 20px 5%;
+    
 
 }
+
 
 nav{
     display: flex;
@@ -190,7 +194,7 @@ nav ul li a:hover::after{
     margin-top: 50px;
 }
 .sandbox-list div{
-   background: rgb(124, 58, 58);;
+   background: rgb(124, 58, 58);
    padding: 40px;
    font-size: 13px;
    font-weight: 300;
@@ -200,14 +204,15 @@ nav ul li a:hover::after{
 
 #sand-section {
     position: relative;
+    z-index: -1;
     width: 100%;
     height: 50px;
-    background: url("images/cork-board.png");
+    background: rgb(124, 58, 58);
 }
   
 #sand-canvas {
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: -1;
   }
