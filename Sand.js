@@ -13,7 +13,9 @@ window.addEventListener('mousemove', function(e){
   mouseX = e.x;
   mouseY = e.y;
 });
+/*
 let isMouseInsideCanvas
+
 // add event listeners
 canvas.addEventListener("mouseenter", () => {
     isMouseInsideCanvas = true;
@@ -22,6 +24,7 @@ canvas.addEventListener("mouseenter", () => {
   canvas.addEventListener("mouseleave", () => {
     isMouseInsideCanvas = false;
   });
+*/
 
 // create SandParticle class
 class SandParticle {
@@ -64,10 +67,11 @@ class SandParticle {
     this.y += this.vy;
 
     // update opacity
-    this.opacity = 1;
-    if (this.opacity < 0.1) {
-      this.opacity = 0.1;
-    }
+    //Not neede atm
+    //this.opacity = 1;
+    //if (this.opacity < 0.1) {
+    //  this.opacity = 0.1;
+    //}
   }
 
   draw() {
@@ -84,7 +88,7 @@ class SandParticle {
 // create particles
 function init() {
     particlesArray = [];
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 10000; i++) {
         const radius = Math.random() * 3;
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
