@@ -1,41 +1,58 @@
 body {
-    background-color: rgb(124, 58, 58);
+    background-color: rgb(165, 42, 42);;/*rgb(124, 58, 58);*/
+    color:  black;
     font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid wheat;
   }
-  
+    .colorPalette {
+        color: cyan;
+        color: yellow;
+        color: magenta;
+        color: black;
+        color: rgb(165, 42, 42);
+        color: rgb(40, 40, 40);
+        color: rgb(211, 211, 211);
+    }
   #header{
     /*width: max-content;*/
+    top: 5%;
     width: 100%;
     /*height: 250px;*/
     position: fixed;
-    left: 100px;
-    background-color: #dadada;
+    color: black;
+    background-color: rgb(211, 211, 211);
     /*background-image: url(images/Background1.png);*/
     background-size: cover;
     background-position: center;
-    overflow: hidden;
+    border-radius: 1px;
+    border: 1px solid wheat;
+
+    
+    
     z-index: 999;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);;
+    box-shadow: 0px 0px 5px rgb(211, 211, 211);
     
     
     
   }
 
   .logo{
-    width: 142px;
+    width: 42px;
   }
 
   .navbar {
-    overflow: hidden;
-    background-color: #333;
+    overflow: hidden;    
+    color: inherit;
+    background-color:  rgb(165, 42, 42);
+    border-radius: 10px;
     display: block;
     
   }
   
   .navbar a {
     float: left;
-    font-size: 16px;
-    color: white;
+    color:  inherit;
+    font-size: 18px;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -43,19 +60,23 @@ body {
 
   @keyframes slide-left{
     0%{
-        width: 100%;
+        /*width: 50%;*/
+        left: 10%;
     }
     100%{
-        width: 0%;
+        /*width: 100%;*/
+        left: 90%;
     }
   }
 
   @keyframes slide-right{
     0%{
-        width: 50%;
+        /*width: 50%;*/
+        left: 90%;
     }
     100%{
-        width: 100%;
+        /*width: 100%;*/
+        left: 10%;
     }
   }
 
@@ -64,17 +85,30 @@ body {
     animation-duration: 1s;*/
     overflow: hidden;
     float: left;
-    font-size: 16px;
-    color: white;
+    font-size: 18px;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     /*transition: slide-right 1s ease-in-out;*/
   }
-  .active, .nav-links.active{
+  .start{
     animation-name: slide-right;
     animation-duration: 1s;
+    left: 10%;
   }
+
+  .active{
+    animation-name: slide-right;
+    animation-duration: 1s;
+    left: 10%;
+  }
+
+  .inactive{
+    animation-name: slide-left;
+    animation-duration: 1s;
+    left: 90%;
+  }
+
   
   .dropdown {
     float: left;
@@ -82,24 +116,24 @@ body {
   }
   
   .dropdown .dropbtn {
-    font-size: 16px;  
+    font-size: 18px;  
     border: none;
     outline: none;
-    color: white;
     padding: 14px 16px;
+    color: inherit;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
   }
   
   .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: rgb(146, 15, 15);
+    background-color:rgb(146, 15, 15);
   }
   
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: rgb(211, 211, 211);;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -115,9 +149,45 @@ body {
   }
   
   .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: rgb(146, 15, 15);
   }
   
   .dropdown:hover .dropdown-content {
     display: block;
+  }
+
+  /*============= sandbox =============*/
+#sandbox{
+    background: #ffe571;
+    padding: 20px 0;
+}
+
+.sandbox-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+.sandbox-list div{
+   background: rgb(124, 58, 58);
+   padding: 40px;
+   font-size: 13px;
+   font-weight: 300;
+   border-right: 10px;
+
+}
+
+#sand-section {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 0px;
+    background: rgb(124, 58, 58);
+}
+  
+#sand-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
   }
