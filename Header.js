@@ -42,7 +42,7 @@ function Fun_Nav(){
         
         
         //dropdown_Menu.classList.remove('active');
-        header.style.width = "max-content";
+        header.style.width = "100%";
         
     }
     //HIDE LINKS
