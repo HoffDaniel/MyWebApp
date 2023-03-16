@@ -2,6 +2,13 @@ const template = document.createElement('template');
 
 template.innerHTML = 
 
+"<div id='PageID'>" +
+    "<div class='PageID-text'>" +
+        "<br>"+ "<br>"+
+        document.title +
+    "</div>" +
+"</div>" +
+
 "<div id='header' class='start'>" +
         
 "<div class='navbar'>" +
@@ -11,8 +18,8 @@ template.innerHTML =
     
     "<div class='nav-links' style='display: block;' >"+ 
         "<a href='index2.html'>Home</a>" +
-        "<a href='/index.html#about'>About</a>" +
-        "<a href='#'>Projects</a>" +
+        "<a href='about.html'>About</a>" +
+        "<a href='projects.html'>Projects</a>" +
         
         "<div class='dropdown'>" +
             "<button class='dropbtn'>SandBox " + 
@@ -23,7 +30,7 @@ template.innerHTML =
                 "<a href='/view/sandbox2.html'>Sand2</a>" +
             "</div>" +
         "</div>" +
-        "<a href='#'>Contact</a>" +
+        "<a href='contact.html'>Contact</a>" +
     "</div>" +
 "</div>"+
 "</div>";
