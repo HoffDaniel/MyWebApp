@@ -1,0 +1,12 @@
+.colourPalette {
+        background-image: linear-gradient(to right, #ff0000, #ff3c00 20%, #ff9100 20%, #ffce00 40%, #ffd900 40%, #ffd900 60%, #ffce00 60%, #ff9100 80%, #ff3c00 80%, #ff0000);
+        background-image: linear-gradient(to right, #000000, #201613fa 20%, #421313 20%, #972121 40%, #ff0000 40%, #ff0000 60%, #ff3c00 60%, #ff9100 80%, #ffce00 80%, #ffd900);
+        background-image: linear-gradient(to right, #0004ff, #0051ff 20%, #3576d8 20%, #dadada 40%, #dadada 40%, #dadada 60%, #ff0000 60%, #ff0000 80%, #ff0000 80%, #ff0000);
+        color: cyan;
+        color: yellow;
+        color: magenta;
+        color: black;
+        color: rgb(165, 42, 42);
+        color: rgb(40, 40, 40);
+        color: rgb(211, 211, 211);
+    }
