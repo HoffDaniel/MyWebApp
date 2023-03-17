@@ -9,4 +9,7 @@
         color: rgb(165, 42, 42);
         color: rgb(40, 40, 40);
         color: rgb(211, 211, 211);
+        color: rgb(173, 216, 230);
+        color:rgb(255, 228, 225);
+        color:rgb(252, 170, 161);
     }
