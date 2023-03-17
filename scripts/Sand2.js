@@ -58,7 +58,7 @@ class Particle {
   }
   
 const particles = [];
-const particleCount = 1000;
+const particleCount = 100;
 console.log(particleCount);
 for (let i = 0; i < particleCount; i++) {
     console.log("Particle [" + i + "]");
