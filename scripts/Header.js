@@ -4,8 +4,8 @@ template.innerHTML =
 
 "<div id='PageID'>" +
     "<div class='PageID-text'>" +
-        "<br>"+ "<br>"+
-        document.title +
+        "<br>"+ "<br>"+ 
+        document.title + 
     "</div>" +
 "</div>" +
 
