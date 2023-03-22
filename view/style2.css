@@ -3,6 +3,8 @@ body {
     margin: 0;
     /*background-color: rgb(165, 42, 42);/*rgb(124, 58, 58);*/
     background-image: linear-gradient(to bottom right,black,rgb(146, 15, 15));
+    /*background-image: linear-gradient(to bottom right,black,rgb(212, 205, 205));
+    */background-repeat: no-repeat;
     background-repeat: no-repeat;
     background-attachment: fixed;
     color:  black;
@@ -62,37 +64,14 @@ body {
     background-color:  rgb(165, 42, 42);
     background-image: linear-gradient(to bottom right,rgb(146, 15, 15),black);
     
-    border-radius: 10px;
+    /*background-image: linear-gradient(to bottom right,rgb(212, 205, 205),black);
+    */border-radius: 10px;
     display: block;
     
   }
 
   
-  p::before{
-    display: block;
-    text-align: center;
-    content: 'Testing';    
-    padding-bottom: 20px;
-    transition: 0.5s;
-  }
-  p::after{
-    display: block;    
-    text-align: center;
-    content: 'Testing';
-    padding-top: 20px;
-    transition: 0.5s;
-
-  }
-
-  p:hover::before{
-    scale: 1.5;
-    content: 'Tested';
-  }
-
-  p:hover::after{
-    scale: 1.5 ;
-    content: 'Tested';
-  }
+  
   
   
   
@@ -231,28 +210,66 @@ body {
   color: rgb(165, 42, 42);
 }
 
+
+
 .content-project:nth-child(odd){
   display: block;
   width: 100% ;
   background-color: rgb(165, 42, 42);
-  border-radius: 10px;
+  /*background-image: linear-gradient(black, rgb(212, 205, 205));
+  */border-radius: 10px;
   margin-bottom: 10px;
 }
 .content-project:nth-child(even){
   display: block;
   width: 100% ;
   background-color: rgb(0, 0, 0);
-  border-radius: 10px;
+  
+  /*background-image: linear-gradient(rgb(212, 205, 205), black);
+  */border-radius: 10px;
   margin-bottom: 10px;
 }
+
+.content-project::before{
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  content: '~o~';     
+  padding: 10px;
+  transition: 0.5s;
+}
+.content-project::after{
+  display: block; 
+  text-align: center; 
+  transition: 0.5s;
+  content: '~o~'; 
+  border-top: 1px solid wheat;    
+  padding: 10px;
+
+}
+
+.content-project:hover::before{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.content-project:hover::after{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
 .content-project-title
 {
+  text-align: center;
   font-size: 20px;
   font-weight: bold;
-  padding: 10px;
-  color: wheat;
+  color:wheat;
   border-bottom: 1px solid wheat;
+  border-top: 1px solid wheat;
 }
+
+
+
 .content-text{
   font-size: large;
   padding: 42px;
@@ -263,32 +280,48 @@ body {
   background-clip: border-box;
 }
 
-.content-project img:nth-child(even){
+.content-project-canvas{
   display: inline-block;
-  vertical-align: top;
-  margin-right: 1%;
-  margin-left: 1%;
+  padding: 10px;
   width: 45%;
+  height: 50%; 
   border-radius: 10px;
-  transition: 0.5s;
+  background-color: wheat;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 2px 2px 10px gray inset;
 }
-.content-project img:nth-child(odd){
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 1%;
-  margin-left: 1%;
-  width: 45%;
-  border-radius: 10px;
-  transition: 0.5s;
+.content-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type: x mandatory;
+  
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.content-project img:hover{
-  scale: 1.1;
+.content-slider::-webkit-scrollbar {
+  display: none ;
 }
+
+.content-slider img{
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  scroll-snap-align: center;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+
+
 
 .content-project p{
   
   display: inline-block;
+  vertical-align: top;
   width: 45%;
   font-size: large;
   padding: 42px;
