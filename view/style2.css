@@ -84,6 +84,15 @@ body {
     text-decoration: none;
   }
 
+  @keyframes fade-in{
+    0%{opacity: 0.4;}
+    100%{opacity: 1;}
+  }
+  @keyframes fade-out{
+    0%{opacity: 1;}
+    100%{opacity: 0.4;}
+  }
+
   @keyframes slide-right{
     0%{
         /*width: 50%;*/
@@ -270,34 +279,25 @@ body {
 
 
 
-.content-text{
-  font-size: large;
-  padding: 42px;
-  border-radius: 10px; 
-  height: inherit;
-  background-image: linear-gradient(to bottom right,rgb(146, 15, 15),black);
-  
-  background-clip: border-box;
-}
+
 
 .content-project-canvas{
   display: inline-block;
-  padding: 10px;
-  width: 45%;
-  height: 50%; 
-  border-radius: 10px;
-  background-color: wheat;
+  width: 50%;
+  height: auto;  
+  border: 1px solid wheat;
+  background-color: wheat;  
   overflow: hidden;
   white-space: nowrap;
-  box-shadow: 2px 2px 10px gray inset;
+  box-shadow: 2px 2px 7px rgb(0, 0, 0) inset;
 }
+
 .content-slider {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling:touch;
-  scroll-snap-type: x mandatory;
-  
+  scroll-snap-type: x mandatory;  
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -308,14 +308,25 @@ body {
 
 .content-slider img{
   flex: 0 0 auto;
-  width: 100%;
+  margin: 10px;
+  width: 90%;
   height: auto;
+  border-radius: 10px;
   scroll-snap-align: center;
   object-fit: contain;
   cursor: pointer;
+  transition: 1s;
 }
 
+.content-slider img.active{
+  scale: 1;
+  opacity: 1;
+}
+.content-slider img.inactive{
+  scale: 0.9;
+  opacity: 0.5;
 
+}
 
 
 .content-project p{
@@ -324,10 +335,20 @@ body {
   vertical-align: top;
   width: 45%;
   font-size: large;
-  padding: 42px;
+  margin: 10px;
   border-radius: 10px; 
 }
 
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
 
 
   /*============= sandbox =============*/
