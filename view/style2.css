@@ -1,10 +1,15 @@
 body {
     height: 100%;
     margin: 0;
-    /*background-color: rgb(165, 42, 42);/*rgb(124, 58, 58);*/
+    background-color: black;    
+    background-color: rgb(69, 196, 219);  
+    background-color: rgb(72, 118, 150);
+    /*background-color: rgb(165, 42, 42);/*rgb(124, 58, 58);
     background-image: linear-gradient(to bottom right,black,rgb(146, 15, 15));
-    /*background-image: linear-gradient(to bottom right,black,rgb(212, 205, 205));
-    */background-repeat: no-repeat;
+    background-image: linear-gradient(to bottom right, black 10%, rgb(146,42,42) 11%);
+    background-image: linear-gradient(to bottom right, rgb(146,42,42) 10%, black  11%);
+    /*background-image: linear-gradient(to bottom right,black,rgb(212, 205, 205));*/
+    background-repeat: no-repeat;
     background-repeat: no-repeat;
     background-attachment: fixed;
     color:  black;
@@ -20,12 +25,14 @@ p{
     color: wheat;
     position: fixed;
     background-color: wheat;
+
     background-size: cover;
     background-position: center;
     border-radius: 1px;
     border: 2px solid wheat;
     z-index: 999;
-    box-shadow: 0px 0px 5px wheat;
+    box-shadow: 0px 0px 5px wheat;    
+    box-shadow: 0px 0px 5px black;
   }
   .PageID-text{
     vertical-align: middle;
@@ -33,9 +40,13 @@ p{
     height: inherit;
     padding-left: 10px;
     padding-right: 10px;
+    /*
     background-color:  rgb(165, 42, 42);
     background-image: linear-gradient(to bottom right,rgb(146, 15, 15),black);
-    
+    background-image: linear-gradient(to bottom right, black 50%, rgb(146,42,42) 55%);
+    */
+    background-color: black;    
+    background-color:rgb(37, 35, 35);
     background-clip: border-box;
         
   }
@@ -53,7 +64,8 @@ p{
     border-radius: 1px;
     border: 1px solid wheat;   
     z-index: 999;
-    box-shadow: 0px 0px 5px wheat;    
+    box-shadow: 0px 0px 5px wheat;     
+    box-shadow: 0px 0px 5px black;   
   }
 
 
@@ -65,7 +77,11 @@ p{
     overflow: hidden;    
     color: inherit;
     background-color:  rgb(165, 42, 42);
-    background-image: linear-gradient(to bottom right,rgb(146, 15, 15),black);
+    background-color:black;
+    background-color:rgb(37, 35, 35);
+    
+    /*background-image: linear-gradient(to bottom right,rgb(146, 15, 15),black);    
+    background-image: linear-gradient(to bottom right, rgb(146,42,42) 50%,  black 55%);
     /*background-image: linear-gradient(to bottom right,rgb(212, 205, 205),black);
     */border-radius: 10px;
     display: block;
@@ -117,7 +133,7 @@ p{
     /*animation-name: slide-right;
     animation-duration: 1s;*/
     overflow: hidden;
-    float: left;
+    display: inline-block;
     font-size: 18px;
     text-align: center;
     padding: 14px 16px;
@@ -150,7 +166,7 @@ p{
   
   .dropdown .dropbtn {
     font-size: 18px;  
-    border: none;
+    border: inherit;
     outline: none;
     padding: 14px 16px;
     color: inherit;
@@ -161,9 +177,12 @@ p{
   
   .navbar a:hover, .dropdown:hover .dropbtn {
         
-    background-color: rgb(146, 15, 15);
-    border-radius: 1px;
-    color: wheat;
+    background-color: rgb(146, 42, 42);
+    background-color: rgb(69, 196, 219);    
+    background-color: rgb(0, 122, 204);     
+    background-color: rgb(72, 118, 150);
+    color: wheat;   
+    border-radius: 10px;    
     border: 2px solid wheat;
     transform: scale(1.1,1.1);
   }
@@ -188,6 +207,10 @@ p{
   
   .dropdown-content a:hover {
     background-color: rgb(146, 15, 15);
+    background-color: rgb(69, 196, 219);
+    background-color: rgb(0, 122, 204);
+       
+    background-color: rgb(72, 118, 150);
   }
   
   .dropdown:hover .dropdown-content {
@@ -209,12 +232,15 @@ p{
   border: 2px solid wheat;
   z-index: 999;
   box-shadow: 0px 0px 5px wheat;
+  box-shadow: 0px 0px 7px black;
 }
 .title{
-  font-size: 20px;
+  font-size: 42px;
+  -webkit-text-stroke: 1px black;
   font-weight: bold;
   padding: 10px;
   color: rgb(165, 42, 42);
+  color: rgb(0, 122, 204);
 }
 
 
@@ -224,18 +250,21 @@ p{
   color:wheat;
   width: 100% ;
   background-color: rgb(165, 42, 42);
-  /*background-image: linear-gradient(black, rgb(212, 205, 205));
-  */border-radius: 10px;
-  margin-bottom: 10px;
+  background-color: rgb(0, 0, 0);  
+  background-color:rgb(37, 35, 35);
+  border-radius: 10px;
+  margin-bottom: 10px;  
+  transition: 0.5s;
 }
 .content-project:nth-child(even){
   display: block;  
   color:wheat;
   width: 100% ;
   background-color: rgb(0, 0, 0);  
-  /*background-image: linear-gradient(rgb(212, 205, 205), black);
-  */border-radius: 10px;
-  margin-bottom: 10px;
+  background-color:rgb(37, 35, 35);
+  border-radius: 10px;
+  margin-bottom: 10px;  
+  transition: 0.5s;
 }
 
 .content-project::before{
@@ -256,14 +285,28 @@ p{
 
 }
 
-.content-project:hover::before{
-  padding-bottom: 20px;
-  padding-top: 20px;
+.content-project:hover{
+  scale: 1.01;
 }
 
-.content-project:hover::after{
+.content-project:hover::before{  
+  background-color: rgb(165, 42, 42);  
+  background-color: rgb(0, 122, 204);
+  background-color: black;
   padding-bottom: 20px;
   padding-top: 20px;
+  border-top-right-radius: 9px;
+  border-top-left-radius: 9px;
+}
+
+.content-project:hover::after{  
+  background-color: rgb(165, 42, 42);  
+  background-color: rgb(0, 122, 204);
+  background-color: black;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom-right-radius: 9px;
+  border-bottom-left-radius: 9px;    
 }
 
 .content-project-title
@@ -273,6 +316,7 @@ p{
   font-weight: bold;
   border-bottom: 2px solid wheat;
   border-top: 2px solid wheat;
+  cursor: pointer;
 }
 
 
@@ -312,9 +356,12 @@ p{
   width: 90%;
   border-radius: 10px;
   scroll-snap-align: center;
-  object-fit: fill;
+  object-fit: contain;
+  box-shadow: 2px 2px 7px black;
   cursor: pointer;
   transition: 0.5s;
+  
+  background-color: black;
 }
 
 .content-slider img.active{

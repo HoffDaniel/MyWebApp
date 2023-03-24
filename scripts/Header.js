@@ -19,8 +19,7 @@ template.innerHTML =
     "<div class='nav-links' style='display: block;' >"+ 
         "<a href='index2.html'>Home</a>" +
         "<a href='about.html'>About</a>" +
-        "<a href='projects.html'>Projects</a>" +
-        
+        "<a href='projects.html'>Projects</a>" +        
         "<div class='dropdown'>" +
             "<button class='dropbtn'>SandBox " + 
                 "<i class='fa fa-caret-down'></i>" +
