@@ -4,7 +4,6 @@ template.innerHTML =
 
 "<div id='PageID'>" +
     "<div class='PageID-text'>" +
-        "<br>"+ "<br>"+ 
         document.title + 
     "</div>" +
 "</div>" +
@@ -13,7 +12,7 @@ template.innerHTML =
         
 "<div class='navbar'>" +
     "<a href='#'>" +
-        "<img src='/images/MOO - Copy.png' class='logo' onclick='Fun_Nav()'><br> DH" +
+        "<img src='/images/MOO - Copy.png' class='logo' onclick='Fun_Nav()'>" +
     "</a>" +
     
     "<div class='nav-links' style='display: block;' >"+ 
