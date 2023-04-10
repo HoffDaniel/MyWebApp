@@ -2,12 +2,12 @@ const template = document.createElement('template');
 
 template.innerHTML = 
 
-"<div id='PageID'>" +
+/*"<div id='PageID'>" +
     "<div class='PageID-text'>" +
         document.title + 
     "</div>" +
 "</div>" +
-
+*/
 "<div id='header' class='start'>" +
         
 "<div class='navbar'>" +
