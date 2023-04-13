@@ -33,4 +33,76 @@
   background-color: rgb(0, 51, 102);
   background-color: rgb(128, 128, 0);
   background-color: rgb(192, 192, 192);
+
+  --Colour-50: rgb(245 248 248);
+  --Colour-100: rgb(224 231 231);
+  --Colour-200: rgb(192 207 207);
+  --Colour-300: rgb(153 174 175);
+  --Colour-400: rgb(115 140 142);
+  --Colour-500: rgb(89 113 115);
+  --Colour-600: rgb(70 88 91);
+  --Colour-700: rgb(58 73 75);
+  --Colour-800: rgb(49 61 62);
+  --Colour-900: rgb(41 49 50);
+  --Colour-950: rgb(22 28 29);
+
+  --Colour-50:  rgb(236 253 243);
+--Colour-100: rgb(209 250 225);
+--Colour-200: rgb(167 243 201);
+--Colour-300: rgb(110 231 172);
+--Colour-400: rgb(52  211 139);
+--Colour-500: rgb(15  169 104);
+--Colour-600: rgb(5   150 92);
+--Colour-700: rgb(4   120 76);
+--Colour-800: rgb(6   95  62);
+--Colour-900: rgb(6   78  52);
+--Colour-950: rgb(2   44  30);
+
+--Colour-50:  rgb(252 244 244);
+--Colour-100: rgb(249 235 234);
+--Colour-200: rgb(243 217 216);
+--Colour-300: rgb(233 184 184);
+--Colour-400: rgb(220 144 145);
+--Colour-500: rgb(204 103 107);
+--Colour-600: rgb(182 72  82);
+--Colour-700: rgb(152 56  67);
+--Colour-800: rgb(128 49  61);
+--Colour-900: rgb(110 45  56);
+--Colour-950: rgb(61  21  27);
+
+--Colour-50:  rgb(238 243 255);
+--Colour-100: rgb(223 233 255);
+--Colour-200: rgb(198 213 255);
+--Colour-300: rgb(163 185 254);
+--Colour-400: rgb(127 146 250);
+--Colour-500: rgb(96  109 244);
+--Colour-600: rgb(67  68 232);
+--Colour-700: rgb(55  53 205);
+--Colour-800: rgb(46  46 165);
+--Colour-900: rgb(44  45 131);
+--Colour-950: rgb(21  21 61);
+
+--Colour-50:  rgb(245 247 242);
+--Colour-100: rgb(232 236 223);
+--Colour-200: rgb(209 217 193);
+--Colour-300: rgb(174 189 152);
+--Colour-400: rgb(134 156 107);
+--Colour-500: rgb(102 126 75);
+--Colour-600: rgb(78 100 55);
+--Colour-700: rgb(61 80 44);
+--Colour-800: rgb(50 64 37);
+--Colour-900: rgb(41 53 31);
+--Colour-950: rgb(12 16 9);
+
+--Colour-50:  rgb(243 250 249);
+--Colour-100: rgb(215 240 238);
+--Colour-200: rgb(174 225 220);
+--Colour-300: rgb(126 202 198);
+--Colour-400: rgb(84  173 171);
+--Colour-500: rgb(58  146 145);
+--Colour-600: rgb(42  110 111);
+--Colour-700: rgb(39  92   94);
+--Colour-800: rgb(35  74   76);
+--Colour-900: rgb(33  63   64);
+--Colour-950: rgb(14  35   37);
     }
