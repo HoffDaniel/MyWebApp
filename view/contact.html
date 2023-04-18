@@ -9,8 +9,23 @@
     <script src="/scripts/Header.js" type="text/javascript" defer> </script>
 </head>
 <body>
-    
-    
+    <div id="content"> 
+        <div class="title">Contact</div> 
+        <div id="content-contact">
+            <h2 class="contact-title">Get in Touch</h2>
+            <p >
+                <b>- Email:</b> Daniel.Hoffmann.Anton@gmail.com <br>
+                <b>- Phone:</b> +44 7738634498    
+            </p>
+            <form class="contact-form" action="https://formsubmit.co/Daniel.Hoffmann.Anton@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New Contact!">
+                <input type="text" name="name" placeholder="Name" required />
+                <input type="email" name="email" placeholder="Email" required />
+                <textarea name="message" placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
     
 </body>
 </html>

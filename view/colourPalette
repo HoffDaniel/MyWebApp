@@ -105,4 +105,16 @@
 --Colour-800: rgb(35  74   76);
 --Colour-900: rgb(33  63   64);
 --Colour-950: rgb(14  35   37);
+
+--Colour-50:  rgb(240 248 251);
+--Colour-100: rgb(217 236 244);
+--Colour-200: rgb(184 219 233);
+--Colour-300: rgb(135 192 217);
+--Colour-400: rgb(79 157 193 );
+--Colour-500: rgb(48 120 156 );
+--Colour-600: rgb(45 104 141 );
+--Colour-700: rgb(43 86 115  );
+--Colour-800: rgb(42 73 96	 );
+--Colour-900: rgb(39 62 82   );
+--Colour-950: rgb(21 39 55   );
     }
