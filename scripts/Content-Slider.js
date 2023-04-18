@@ -5,6 +5,7 @@ projects.forEach((project,index) => {
     const slider = project.querySelector('.content-slider');
 
     const images = slider.querySelectorAll('img');
+    images[0].style.opacity = 1;
     
     let currentImage = 0;
     
@@ -42,15 +43,15 @@ projects.forEach((project,index) => {
     content_pro_active.querySelector('.content-project-title').style.display = "grid";
     content_pro_active.querySelector('.content-project-canvas').style.display = "grid";
     
-    project_canvas.style.display = "none";
-    project_p.style.display = "none";
-    project_title.style.scale = "1";
+    
     
 });
 
 /*On click of content project title*/
 function hideContentProject(event) {
     var content_pro = event.currentTarget.parentNode;
+
+
     var project_canvas = content_pro.querySelector('.content-project-canvas');
     var project_p = content_pro.querySelector('.content-project p');
     var content_pro_active = content_pro.parentNode.querySelector('.content-project.active');
@@ -86,6 +87,7 @@ function hideContentProject(event) {
     content_pro_active.classList.remove('active');
 
     content_pro.classList.toggle('active');
+    content_pro.scrollIntoView({behavior:'smooth'});
 
     
     
