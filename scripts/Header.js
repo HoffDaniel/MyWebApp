@@ -6,26 +6,28 @@ template.innerHTML =
     "<div class='PageID-text'>" +
         document.title + 
     "</div>" +
-"</div>" +
+"</div>" + 
+☰
 */
 "<div id='header' class='start'>" +
         
 "<div class='navbar'>" +
-    "<a href='#'>" +
-        "<img src='/images/MOO - Copy.png' class='logo' onclick='Fun_Nav()'>" +
+    "<a href='#'> " +
+        "<img src='/images/MOO - Copy.png' class='logo' onclick='Fun_Nav()'> " +
     "</a>" +
     
     "<div class='nav-links' style='display: block;' >"+ 
-        "<a href='index2.html'>Home</a>" +
+        "<a href='index.html'>Home</a>" +
         "<a href='about.html'>About</a>" +
-        "<a href='projects.html'>Projects</a>" +        
-        "<div class='dropdown'>" +
+        "<a href='projects.html'>Portfolio </a>" +        
+        "<div class='dropdown'>" + 
             "<button class='dropbtn'>SandBox " + 
-                "<i class='fa fa-caret-down'></i>" +
+                
             "</button>" +
             "<div class='dropdown-content'>" +
                 "<a href='/view/sandbox.html'>Sand1</a>" +
                 "<a href='/view/sandbox2.html'>Sand2</a>" +
+                "<a href='/view/sandbox_Astar.html'>A*</a>" +
             "</div>" +
         "</div>" +
         "<a href='contact.html'>Contact</a>" +

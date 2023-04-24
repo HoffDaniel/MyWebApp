@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="stylesheet" href="style2.css">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
     <script src="/scripts/Header.js" type="text/javascript" defer> </script>
 </head>
 <body>
@@ -13,29 +13,34 @@
         <div class="title">Portfolio</div>
         <div class="content-project active">
             <div class="content-project-title" onclick="hideContentProject(event)"> 
-                <h2>My Web App</h2></div>
+                <h2>My Web App</h2>
+            </div>
             <div class="content-project-canvas">
-                <div class="content-slider">                    
+                <div class="content-slider"> 
+                    <img src="/images/Project_MyWebApp/WebCeption4.png">                   
                     <img src="/images/Project_MyWebApp/WebCeption3.png">
                     <img src="/images/Project_MyWebApp/WebCeption2.png">
                     <img src="/images/Project_MyWebApp/WebCeption.png">                  
                 </div>
+                
             </div>
             
                 
             <p> 
-                (Personal Project)<br><br>
-                This webpage: <br><br>
-                - Personal<br><br>
-                - Portfolio<br><br>                
-                - Sandbox<br><br>
+                <b>Personal Project</b>
+                Ongoing project developing my personal webpage:<br><br>
+                <span>• &emsp; To present my background, interests, and experiences</span>
+                <span>• &emsp; To showcase my skills and to have a space where I can display some of my projects</span>
+                <span>• &emsp; To play around in the Sandbox, my experimental space where you can find a variety of in-progress works, 
+                    creative ideas, and innovative concepts</span> 
 
                 <a href="https://github.com/HoffDaniel/MyWebApp">  > See github</a>
             </p>
         </div>
         <div class="content-project">
             <div class="content-project-title" onclick="hideContentProject(event)"> 
-                <h2>Mobile Robots</h2></div>
+                <h2>Mobile Robots</h2>
+            </div>
             <div class="content-project-canvas">
                 <div class="content-slider">
                                  
@@ -49,24 +54,20 @@
                     <img src="/images/Project_Mobile_Robots/experiments2.PNG">
                     <img src="/images/Project_Mobile_Robots/Map_1.png">                                    
                 </div>
-                
-                
+            
             </div>
                 
             <p> 
-                (University)<br><br>
+                <b>University Project</b>
                 Programming of a mobile robot (pioneer 3D-X) in Coppeliasim (V-Rep) using lua. 
-                <br><br><br><br>
-                The robot had to complete several tasks:<br><br>
-                - task 1: the robot must find the middle of the starting room and exit
                 <br><br>
-                - task 2: the robot must find the beacon
+                The robot had to complete several tasks:
+                <span>• &emsp;  task 1: find the middle of the starting room and exit</span>
+                <span>• &emsp;  task 2: find the beacon</span>
+                <span>• &emsp;  task 3: map the environment to a certain degree</span>
+                <span>• &emsp;  task 4: return to the centre of the starting room</span>
                 <br><br>
-                - task 3: the robot must map the environment to a certain degree
-                <br><br>
-                - task 4: the robot must return to the centre of the starting room
-                <br><br>
-                The robot uses ultrasonic proximity sensors to avoid obstacles and to map the environment on an occupancy grid. 
+                In the end the robot the robot has a Finite State Machine (FSM) to make sure that the tasks are completed. It uses ultrasonic proximity sensors to avoid obstacles and to map the environment on an occupancy grid. 
                 The robot can use A* (A star) pathfinding to get to a specific point on the mapped environment and 
                 uses a PID controller to keep inline with the path or to follow walls. 
                 <br><br>
@@ -75,8 +76,8 @@
         </div>
         <div class="content-project">
             <div class="content-project-title" onclick="hideContentProject(event)"> 
-                <h2>Tool for visualisation, exploration, and comparison of Nature-inspired optimisation algorithms</h2></div>      
-            
+                <h2>Tool for visualisation, exploration, and comparison of Nature-inspired optimisation algorithms</h2>
+            </div>     
             <div class="content-project-canvas">
                 <div class="content-slider">
                     <img src="/images/Project_Final_MSc/Projects_MSc_1.png">
@@ -84,11 +85,11 @@
                     <img src="/images/Project_Final_MSc/Class Diagram 4 .png">
                     <img src="/images/Project_Final_MSc/Requirement Diagram 5.png">
                     <img src="/images/Project_Final_MSc/Use Case Diagram 2.png">
-                                     
+                                   
                 </div>
             </div>
             <p> 
-                (University Project)<br><br>
+                <b>University Project</b>
                 Intelligent Systems Masters Final Project.
                 <br><br>
                 The idea: to provide an application which helps to better understand certain algorithms by simultaneously visualising two or more algorithms at the same time as they progress through the problems search space, 
@@ -111,7 +112,8 @@
         </div>
         <div class="content-project">
             <div class="content-project-title" onclick="hideContentProject(event)"> 
-                <h2>University Room Management System<h2></div>
+                <h2>University Room Management System<h2>
+            </div>
             <div class="content-project-canvas">
                 <div class="content-slider">
                     <img src="/images/Project_Final_BSc/Web_App_AllRooms.PNG">
@@ -121,11 +123,11 @@
                     <img src="/images/Project_Final_BSc/Web_App_MyBookings.PNG">
                     <img src="/images/Project_Final_BSc/Web_App_Registration.PNG">
                     <img src="/images/Project_Final_BSc/Web_App_SearchRooms.PNG">
-                </div>
+                </div>                
             </div>
                 
             <p> 
-                (University Project)<br><br>
+                <b>University Project</b>
                 This was my BSc final year development project. It was the first time developing a web application and I used: 
                 HTML, CSS, JavaScript, Node.js, Express.js,and MySQL/SQL,
                 The idea was to create an application from which one can book rooms. Additionally the 
@@ -142,8 +144,10 @@
                 <h2>More<h2></div>
             <div class="content-project-canvas">
                 <div class="content-slider">
-                    <img src="/images/MOO - Copy.png">                    
-                </div>
+                    <img src="/images/MOO - Copy.png">                         
+                    <img src="/images/MOO - Copy.png">       
+                    <img src="/images/MOO - Copy.png">                  
+                </div>                
             </div>                
             <p> 
                More to come...                <br>                <br>

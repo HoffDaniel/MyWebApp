@@ -2,41 +2,49 @@ const projects = document.querySelectorAll('.content-project');
 
 
 projects.forEach((project,index) => {
+    const project_canvas = project.querySelector('.content-project-canvas');
     const slider = project.querySelector('.content-slider');
-
     const images = slider.querySelectorAll('img');
-    images[0].style.opacity = 1;
+
+    var newDots = document.createElement('span');
+    newDots.classList.add('dots');
+    project_canvas.appendChild(newDots);
     
     let currentImage = 0;
     
     
-    
 
     /* when clicking on image */
-    images.forEach((image) => {
-    image.addEventListener('click', () => {showNextImage();});
+    images.forEach((image, index) => {
+        //Add event Listener
+        image.addEventListener('click', () => {showNextImage();});
+        
+        //Add Dots under canvas
+        var newDot = document.createElement('span');
+        newDot.classList.add('dot');
+        if(index===0){ newDot.classList.add('active');}
+        newDots.appendChild(newDot);
     });
+
     function showNextImage()
     {
-        
-        images[currentImage].style.opacity = 1;        
-       
-        //images[nextImg].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            //content-project(even) -> slide right
-            nextImg = (currentImage + 1) % images.length;
-            const scrollAmount = images[nextImg].offsetLeft - images[currentImage].offsetLeft;
-            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            //dotsContainer.style.left = `${parseInt(dotsContainer.style.left) + scrollAmount}px`;
-       
-          
-        //images[nextImg].scrollIntoView({ behavior: 'smooth', block: 'nearest'});
+        //content-project(even) -> slide right
+        nextImg = (currentImage + 1) % images.length;
+
+        const scrollAmount = images[nextImg].offsetLeft - images[currentImage].offsetLeft;
+        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+
         images[currentImage].style.opacity = 0.42;
         images[nextImg].style.opacity = 1;
+        var allDots = newDots.querySelectorAll('.dot')
+        allDots[currentImage].classList.remove('active');
+        allDots[nextImg].classList.toggle('active');
+        //canvas_dots.innerHTML = (nextImg+1) + "/" + images.length; //adding +1 cause nextImg starts index 0 ...
         currentImage = nextImg; 
     };
 
     var project_title = project.querySelector('.content-project-title');
-    var project_canvas = project.querySelector('.content-project-canvas');
+    
     var project_p = project.querySelector('.content-project p');
     var content_pro_active = project.parentNode.querySelector('.content-project.active');
 

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="style3.css">
+    <script src="https://kit.fontawesome.com/c125ed2f4e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <!--<div id="attention"> DANIEL HOFFMANN 
+        <p>Welcome to my first steps in developing my web page</p>
+        <p>
+            <b>Site</b> <u>Under</u> <i>Construction</i>.
+        </p>
+    </div>-->
+    <section id="sand-section">
+        
+    </section>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/MOO - Copy.png" class="logo">
+                <ul>
+                    <li><a href="index2.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="sandbox.html">SandBox</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li>
+                        <a href="sandbox.html"></a>
+                            <div class="dropdown">
+                                
+                                    <button class="dropbtn">Dropdown</button>
+                                
+                                <div class="dropdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </nav>
+            <div class="header-text">
+                <h1><span> Daniel Hoffmann</span></h1>
+                <div class="gradient-text">
+                    <div class="gradient-spain"> Spanish</div> 
+                    <div class="gradient-germany"> German</div>
+                    <div class="gradient-chile"> Chilean</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/MOO - Copy.png">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>This webpage is a piece of me</p>
+                    <div class="tab-titles">
+                        <div class="tab-links active-link" onclick="opentab('education')">Education</div>
+                        <div class="tab-links" onclick="opentab('skills')">Skills</div>
+                        <div class="tab-links" onclick="opentab('experience')">Experience</div>
+                    </div>
+                    <div class="tab-contents active-tab" id="education">
+                        <ul>
+                            <li><span>Software Development</span><br> Online Booking Management System, Algorithm Comparison System</li>
+                            <li><span>Intelligent Systems Development </span><br> Game AI and Mobile Robots behaviour, <br>Fuzzy Systems, <br> Neural Networks </li>                         
+                            
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="skills">
+                        <ul>
+                            <li><span>Languages</span><br> Spanish, German, French, English</li>
+                            <li><span>Programming Languages </span><br> C++, C#, JavaScript </li>  
+                            <li><span>Programming Languages </span><br> C++, C#, JavaScript </li> 
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>Suntrace</span><br> Solar Energy Consultant Intern </li>
+                            <li><span>Grosvenor Services</span><br> Part-time work at an Amazon Warehouse </li>                         
+                            
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SandBox -->
+    <div id="sandbox">
+        <div class="container">
+            <h1 class="sub-title">My SandBox</h1>
+            <div class="sandbox-list">
+                <div>
+                    <i class="fa-solid fa-house"></i>
+                    <h2> Sand</h2>
+                    <p>TEST Sand</p>
+                    <a href="#"> more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-umbrella-beach"></i>
+                    <i class="fa-sharp fa-solid fa-virus"></i>
+                    <h2> Genetic Algorithm</h2>
+                    <p>TEST GA</p>
+                    <a href="#"> more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <section id="sand-section">
+        <canvas id="sand-canvas"></canvas>
+    </section>
+    <script src="Test.js"></script>
+    -->
+
+    <script>
+        var navLinks = document.querySelectorAll('nav a');
+    
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].addEventListener('click', function(event) {
+                
+                var targetId = this.getAttribute('href'); // get the ID of the target section
+                var targetSection = document.querySelector(targetId); // get the target section element
+                if(targetSection){
+                    event.preventDefault(); // prevent the default behavior of the link
+                    targetSection.scrollIntoView({ behavior: 'smooth' }); // scroll to the target section smoothly
+                }
+            });
+        }
+    </script>
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    
+    </script>
+</body>
+</html>
