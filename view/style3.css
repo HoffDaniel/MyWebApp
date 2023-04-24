@@ -1,0 +1,242 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background: rgb(124, 58, 58);
+    color: rgb(0, 0, 0);
+}
+/*
+#attention{
+    padding: 10px 1%;    
+    width: 100%;
+    height: 7vh;
+}
+*/
+#header{
+    width: 100%;
+    height: 250px;
+    position: relative;
+    left: 100px;
+    background-color: #dadada;
+    /*background-image: url(images/Background1.png);*/
+    background-size: cover;
+    background-position: center;
+
+}
+.container{
+    padding: 20px 5%;
+    
+
+}
+.navbar a {
+    float: left;
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    float: none;
+    display: block;
+}
+
+/* hide the dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo{
+    width: 140px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+
+nav ul li a{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+
+nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #e04073;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+}
+
+.header-text{
+    margin-top: 0%;
+    font-size: 30px;
+}
+
+.header-text h1{
+    margin-top: 0px;
+    font-size: 30px;
+}
+
+.gradient-text{
+    margin-top: 0;
+    font-size: 42px;
+    width: max-content;
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+}
+.gradient-spain{
+    display: inline-block;
+    width: max-content;
+    background-image: linear-gradient(to right, #ff0000, #ff3c00 20%, #ff9100 20%, #ffce00 40%, #ffd900 40%, #ffd900 60%, #ffce00 60%, #ff9100 80%, #ff3c00 80%, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.gradient-germany{
+    display: inline-block;
+    width: max-content;
+    background-image: linear-gradient(to right, #000000, #201613fa 20%, #421313 20%, #972121 40%, #ff0000 40%, #ff0000 60%, #ff3c00 60%, #ff9100 80%, #ffce00 80%, #ffd900);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.gradient-chile{
+    display: inline-block;
+    width: max-content;
+    background-image: linear-gradient(to right, #0004ff, #0051ff 20%, #3576d8 20%, #dadada 40%, #dadada 40%, #dadada 60%, #ff0000 60%, #ff0000 80%, #ff0000 80%, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-text span{
+    color: #e04073;
+}
+
+/*======================== ABOUT ========================*/
+#about{
+    padding: 80px 0;
+    color: #aba;
+}
+.row{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.about-col-1{
+    flex-basis: 35%;
+}
+.about-col-1 img{
+    width: 100%;
+    border-radius: 15px;
+}
+.about-col-2{
+    flex-basis: 60%;
+}
+.sub-title{
+    font-size: 60px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}
+
+.tab-titles{
+    display: flex;
+    margin: 20px 0 40px;
+}
+.tab-links{
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+.tab-links::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #e04073;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: 0.5s;
+}
+
+.tab-links.active-link::after{
+    width: 100%;
+}
+
+.tab-contents ul li{
+    list-style: none;
+    margin: 10px 0;
+}
+.tab-contents ul li span{
+    color: #e04073;
+    font-size: 18px;
+}
+
+.tab-contents{
+    display: none;
+}
+.tab-contents.active-tab{
+    display: block;
+}
+
+/*============= sandbox =============*/
+#sandbox{
+    background: #ffe571;
+    padding: 20px 0;
+}
+
+.sandbox-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+.sandbox-list div{
+   background: rgb(124, 58, 58);
+   padding: 40px;
+   font-size: 13px;
+   font-weight: 300;
+   border-right: 10px;
+
+}
+
+#sand-section {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 50px;
+    background: rgb(124, 58, 58);
+}
+  
+#sand-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
