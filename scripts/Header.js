@@ -28,6 +28,7 @@ template.innerHTML =
                 "<a href='/view/sandbox.html'>Sand1</a>" +
                 "<a href='/view/sandbox2.html'>Sand2</a>" +
                 "<a href='/view/sandbox_Astar.html'>A*</a>" +
+                "<a href='/view/sandbox_Golden.html'>Golden Spiral</a>"  +
             "</div>" +
         "</div>" +
         "<a href='contact.html'>Contact</a>" +

@@ -1,0 +1,74 @@
+<!-- Playing around with chatgpt-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Spiral</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/scripts/Header.js" type="text/javascript" defer> </script>
+    
+
+    
+</head>
+<body>
+    <div id="content">
+        <div class="title">Golden Spiral</div>
+        <div class="sand-golden">
+            <div class="item a" id="item-a"></div>
+            <div class="item b" id="item-b"></div>
+            <div class="item c" id="item-c"></div>
+            <div class="item d" id="item-d"></div>
+            <div class="item e" id="item-e"></div>
+            <div class="item f" id="item-f"></div>
+            <div class="item g" id="item-g"></div>
+        </div>
+    </div>
+    <script>
+        const items = [
+            { element: document.getElementById("item-a"), cx: 1, cy: 1 },
+            { element: document.getElementById("item-b"), cx: 0, cy: 1 },
+            { element: document.getElementById("item-c"), cx: 0, cy: 0 },
+            { element: document.getElementById("item-d"), cx: 1, cy: 0 },
+            { element: document.getElementById("item-e"), cx: 1, cy: 1 },
+            { element: document.getElementById("item-f"), cx: 0, cy: 1 },
+            { element: document.getElementById("item-g"), cx: 0, cy: 0 }
+        ];
+    
+        function updateEllipse(item) {
+            const itemWidth = item.element.clientWidth;
+            const itemHeight = item.element.clientHeight;
+            const cx = itemWidth * item.cx;
+            const cy = itemHeight * item.cy;
+    
+            item.ellipse.setAttribute("cx", cx);
+            item.ellipse.setAttribute("cy", cy);
+            item.ellipse.setAttribute("rx", itemWidth);
+            item.ellipse.setAttribute("ry", itemHeight);
+        }
+    
+        function createEllipse(item) {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("width", "100%");
+            svg.setAttribute("height", "100%");
+            item.element.appendChild(svg);
+    
+            const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+            ellipse.setAttribute("stroke", "gold");
+            ellipse.setAttribute("fill", "none");
+            ellipse.setAttribute("stroke-width", "2");
+            svg.appendChild(ellipse);
+    
+            item.ellipse = ellipse;
+            updateEllipse(item);
+        }
+    
+        items.forEach(createEllipse);
+    
+        window.addEventListener("resize", () => {
+            items.forEach(updateEllipse);
+        });
+    </script>
+</body>
+</html>

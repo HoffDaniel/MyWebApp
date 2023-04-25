@@ -1,0 +1,62 @@
+/*==========================================  ==========================================*/
+/*========================================== Sandbox ==========================================*/
+/*==========================================  ==========================================*/
+#sand-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+.sand-golden{
+  grid-column: 1/-1 ;
+  margin: 10px;
+  height: 700px;
+  display: grid;
+  /*Got the grid ratios from here: https://codepen.io/bobby1030/pen/EWmyZW*/
+  grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
+  grid-template-rows: 61.8% 9.02% 5.58% 23.6%;
+  grid-template-areas: 
+    "A B B B"
+    "A E F C"
+    "A E G C"
+    "A D D C";
+  
+}
+
+.item{
+  background-color: var(--Colour-800);
+  display: flex;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  transition: 2s;
+}
+
+.item.a{
+  grid-area: A;
+}
+.item.b{
+  grid-area: B;
+}
+.item.c{
+  grid-area: C;
+}
+.item.d{
+  grid-area: D;
+}
+.item.e{
+  grid-area: E;
+}
+.item.f{
+  grid-area: F;
+}
+.item.g{
+  grid-area: G;
+}
+.item:hover{
+  background-color: var(--Colour-400);
+  transform: scale(1.01);
+  transition: 0.5s;
+}

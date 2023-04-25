@@ -1,4 +1,24 @@
 /*==========================================  ==========================================*/
+/*========================================== Header / Navbar ==========================================*/
+/*==========================================  ==========================================*/
+@import url(styles/header.css);
+
+/*==========================================  ==========================================*/
+/*========================================== Content Project ==========================================*/
+/*==========================================  ==========================================*/
+@import url(styles/content_project.css);
+
+/*==========================================  ==========================================*/
+/*========================================== Content Contact ==========================================*/
+/*==========================================  ==========================================*/
+@import url(styles/content_contact.css);
+
+/*==========================================  ==========================================*/
+/*========================================== Sandbox ==========================================*/
+/*==========================================  ==========================================*/
+@import url(styles/sandbox.css);
+
+/*==========================================  ==========================================*/
 /*========================================== General Style Steet ==========================================*/
 /*==========================================  ==========================================*/
 :root{
@@ -72,171 +92,8 @@ a:hover{
   text-decoration: underline 1px;
 }
  
-  /*==========================================  ==========================================*/
-  /*========================================== Header / Navbar ==========================================*/
-  /*==========================================  ==========================================*/
-  #header{
-    /*width: max-content;*/
-    width: 100%;
-    position: fixed;
-    color: var(--Colour-200);
-    /*background-image: url(images/Background1.png);*/
-    background-size: cover;
-    background-position: center;
-    z-index: 999;   
-  }
-
-  .logo{
-    height: 42px;
-  }
-
-  .navbar {
-    overflow: hidden;    
-    background-color: var(--Colour-900);
-    border-radius: 10px;
-    display: block;
-    
-  }
-
- 
-  .navbar a {
-    float: left;
-    color:  inherit;
-    font-size: 18px;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    border: 2px solid;    
-    border-color: transparent;
-    border-radius: 10px;
-    transition: 1.5s;
-  }
-
- 
-
-  @keyframes slide-right{
-    0%{
-        /*width: 50%;*/
-        left: 15%;
-    }
-    100%{
-        /*width: 100%;*/
-        left: 95%;
-    }
-  }
-
-  @keyframes slide-left{
-    0%{
-        /*width: 50%;*/
-        left: 95%;
-    }
-    100%{
-        /*width: 100%;*/
-        left: 15%;
-    }
-  }
-
-  .nav-links {
-    overflow: hidden;
-    display: inline-block;
-    font-size: 18px;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    
-  }
-  .start{
-    animation-name: slide-left;
-    animation-duration: 1s;
-    left: 15%;
-  }
-
-  .active{
-    animation-name: slide-left;
-    animation-duration: 1s;
-    left: 15%;
-  }
-
-  .inactive{
-    animation-name: slide-right;
-    animation-duration: 1s;
-    left: 95%;
-  }
 
   
-  .dropdown {
-    float: left;
-    overflow: hidden;
-  }
-  
-  .dropdown .dropbtn {
-    font-size: 18px;   
-    border: 2px solid;  
-    border-color: transparent;  
-    border-radius: 10px;
-    outline: none;
-    padding: 14px 16px;
-    color: inherit;
-    background-color: inherit;
-    font-family: inherit;
-    transition: 1s;
-  }
-  .dropdown .dropbtn::after{
-    content: '🏖️';
-    content: '▼';
-    transition: 0.5s;
-  }
-
-  .dropdown:hover .dropbtn::after{
-    content: '▲';
-    transition: 2.5s;
-  }
-  
-  .navbar a:hover, .dropdown:hover .dropbtn {   
-    background-color: var(--Colour-700);
-    color: var(--Colour-200);     
-    border-color: none;  /*var(--Colour-200);*/
-    
-    /*font-size: 19px;*/
-    /*transform: scale(1.1,1.1);
-    transform: translateY(-1px);*/
-    transform: translateX(3px);
-    transform: translateY(-3px);
-    transition: 0.5s;
-    
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color:transparent;
-    
-    min-width: 160px;
-    /*box-shadow: 0px 8px 16px 0px var(--ColourShadow);*/
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    float: none;
-    color: black;
-    background-color:var(--Colour-200);
-
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .dropdown-content a:hover {       
-    background-color: var(--Colour-700);
-    transition: 1s;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-    transition: 1s;
-  }
-
 /*==========================================  ==========================================*/
 /*========================================== Content ==========================================*/
 /*==========================================  ==========================================*/
@@ -254,8 +111,6 @@ a:hover{
   background-position: center;
   border-radius: 10px;
   position: absolute;
-  
-  /*box-shadow: 0px 0px 16px 0px var(--ColourShadow);*/
 }
 
 .title{
@@ -265,265 +120,10 @@ a:hover{
   font-weight: bold;
   text-align: center;
   padding: 10px;
-  width: 15%;
+  width: max(10%);
   color: var(--Colour-200);
   background-color: var(--Colour-700);
   border: 3px solid var(--Colour-700);
   border-radius: 10px;
 }
 
-/*.content-tab{
-
-}
-.tab-link{
-  grid-area: ;
-}
-.tab-text{
-
-}
-
-.button previous
-.button next
-*/
-
-.content-project{
-  /*grid-row: 3; /* Start on row 3*/
-  grid-column: span 1;
-  display: grid;
-  margin: 10px;
-  grid-gap: 10px;
-  grid-template-rows: auto auto;
-  height: max-content;
-  color:var(--Colour-200);
-  transition: 0.5s;
-  scale: 1;  
-  background-color: var(--Colour-800);
-  border-radius: 10px;
-  transition: 1s;
-  /* box-shadow: 0px 0px 1px 1px var(--Colour-300) ;/* */
-}
-
-
-
-.content-project.active{
-  grid-column: 1 / -1; /* Span all columns*/
-  grid-row: 2; /* Start on row 2*/
-  border-radius: 10px;
-  transition: 1s;
-}
-
-.content-project > .content-project-title{
-  grid-area: title; 
-  text-align: center;
-  padding: 20px;
-  font-size: 20px;
-  color: var(--Colour-200);  
-  font-weight: bold;
-  /*border: 5px solid var(--Colour-200);  */
-  transition: 1.5s;
-  cursor: pointer;
-  background-color:var(--Colour-700);
-  border-radius: 10px; 
-  /*border-bottom-right-radius: 0px;  
-  border-bottom-left-radius: 0px;  */
-}
-.content-project > .content-project-canvas{
-  grid-area: canvas;
-  display: grid;
-  grid-gap: 10px;
-  height: 700px;
-  border-radius: 10px;
-}
-.content-project > p{
-  display: grid;
-  grid-area: text;
-  margin: 0;
-  vertical-align: top;
-  font-size: 16px;
-  padding: 20px;
-  background-color:var(--Colour-950);
-  border-radius: 10px;
-}
-.content-project > p a{
-  display: flex;
-  align-items: flex-end;
-}
-.content-project > p b{
-  height: max-content;
-  border-bottom: 1px solid var(--Colour-800);
-}
-
-.content-project:nth-child(odd){  
-  grid-template-columns: 2fr 3fr;
-  grid-template-areas: "title title"
-  "text canvas";
-  
-}
-
-.content-project:nth-child(even){
-  grid-template-columns: 3fr 2fr;
-  grid-template-areas: "title title"
-  "canvas text";
-}
-
-
-
-
-.content-slider:hover, .content-project-title:hover {
-  transform: translateY(-3px);
-  transition: 0.5s;
-}
-
-
-
-
-.content-slider {
-  background-color:var(--Colour-900); 
-  position: relative;
-  display: flex;
-  overflow-x: hidden;  
-  scroll-snap-type: x mandatory;  
-  border-radius: 10px;
-  transition: 1s;
-}
-
-.content-project-canvas .dots {
-  display: flex;
-  background-color: var(--Colour-900);
-  justify-content: center;
-  align-content: center;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  bottom: 0;
-}
-
-
-.dots .dot {
-  cursor: pointer;
-  height: 10px;
-  width: 10px;
-  margin: 0 2px;
-  background-color: var(--Colour-200);
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-
-.dot.active{
-  scale: 1.42;
-  background-color: var(--Colour-950);
-  transition: 0.5s;
-}
-
-.content-project.active .content-project-title:hover::after{
-  content: '▶';
-  position: absolute;
-  right: 1%;
-  top: 42%;
-}
-
-
-
-
-
-.content-slider img{
-  flex: 1 0 auto;
-  width: 100%;
-  height: auto;
-  scroll-snap-align: center;
-  object-fit: contain;
-  cursor: pointer;
-  transition: 0.5s;  
-}
-
-/*==========================================  ==========================================*/
-/*========================================== Contact ==========================================*/
-/*==========================================  ==========================================*/
-#content-contact {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  background-color: var(--Colour-800);
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-}
-
-#content-contact p{
-  color: var(--Colour-200);   
-  background-color: var(--Colour-900); 
-  font-size: 18px;  
-  width: 100%;
-  max-width: 500px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 10px;
-}
-
-.contact-title {
-  font-size: 42px;
-  color: var(--Colour-200);
-  text-align: center;
-  margin-bottom: 20px;  
-  transition: 1s;
-}
-.contact-title:hover {
-  transform: translateY(-3px);
-  transition: 0.5s;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 500px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  background-color: var(--Colour-950);
-  color: var(--Colour-200);
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.contact-form textarea {
-  resize: none;
-  min-height: 150px;
-}
-
-.contact-form button {
-  background-color: var(--Colour-950);
-  color: var(--Colour-200);
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.contact-form button:hover {
-  background-color: var(--Colour-900);
-  transform: translateY(-3px);
-  transition: 0.5s;
-}
-
-
-
-/*==========================================  ==========================================*/
-/*========================================== Sandbox ==========================================*/
-/*==========================================  ==========================================*/
-#sand-canvas {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }

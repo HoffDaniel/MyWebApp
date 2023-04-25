@@ -23,11 +23,36 @@ projects.forEach((project,index) => {
         var newDot = document.createElement('span');
         newDot.classList.add('dot');
         if(index===0){ newDot.classList.add('active');}
+        newDot.addEventListener('click', () => showThisImage(index))
         newDots.appendChild(newDot);
+
+
     });
+
+    function showThisImage(index)
+    {
+        /*
+        -Get Index of the next image
+        -calculate distance difference (offset?)
+        -scroll by the calculated amount
+        -make images fade out/in
+        -make active image correspond to active dot
+        -update current Image value (its an index)
+        */
+        nextImg = index;
+        const scrollAmount = images[nextImg].offsetLeft - images[currentImage].offsetLeft;
+        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        images[currentImage].style.opacity = 0.42;
+        images[nextImg].style.opacity = 1;
+        var allDots = newDots.querySelectorAll('.dot')
+        allDots[currentImage].classList.remove('active');
+        allDots[nextImg].classList.toggle('active');
+        currentImage = nextImg; 
+    }
 
     function showNextImage()
     {
+
         //content-project(even) -> slide right
         nextImg = (currentImage + 1) % images.length;
 
