@@ -1,0 +1,158 @@
+/*==========================================  ==========================================*/
+/*========================================== Content Project ==========================================*/
+/*==========================================  ==========================================*/
+
+.content-project{
+  /*grid-row: 3; /* Start on row 3*/
+  grid-column: span 1;
+  display: grid;
+  margin: 10px;
+  grid-gap: 10px;
+  grid-template-rows: auto auto;
+  height: max-content;
+  color:var(--Colour-200);
+  transition: 0.5s;
+  scale: 1;  
+  background-color: var(--Colour-800);
+  border-radius: 10px;
+  transition: 1s;
+  /* box-shadow: 0px 0px 1px 1px var(--Colour-300) ;/* */
+}
+
+
+
+.content-project.active{
+  grid-column: 1 / -1; /* Span all columns*/
+  grid-row: 2; /* Start on row 2*/
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.content-project > .content-project-title{
+  grid-area: title; 
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  color: var(--Colour-200);  
+  font-weight: bold;
+  /*border: 5px solid var(--Colour-200);  */
+  transition: 1.5s;
+  cursor: pointer;
+  background-color:var(--Colour-700);
+  border-radius: 10px; 
+  /*border-bottom-right-radius: 0px;  
+  border-bottom-left-radius: 0px;  */
+}
+.content-project > .content-project-canvas{
+  grid-area: canvas;
+  display: grid;
+  grid-gap: 10px;
+  height: 700px;
+  border-radius: 10px;
+}
+.content-project > p{
+  display: grid;
+  grid-area: text;
+  margin: 0;
+  vertical-align: top;
+  font-size: 16px;
+  padding: 20px;
+  background-color:var(--Colour-950);
+  border-radius: 10px;
+}
+.content-project > p a{
+  display: flex;
+  align-items: flex-end;
+}
+.content-project > p b{
+  height: max-content;
+  border-bottom: 1px solid var(--Colour-800);
+}
+
+.content-project:nth-child(odd){  
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "title title"
+  "text canvas";
+  
+}
+
+.content-project:nth-child(even){
+  grid-template-columns: 3fr 2fr;
+  grid-template-areas: "title title"
+  "canvas text";
+}
+
+
+
+
+.content-slider:hover, .content-project-title:hover {
+  transform: translateY(-3px);
+  
+  scale: 1.005;
+  transition: 0.5s;
+}
+
+
+
+
+.content-slider {
+  background-color:var(--Colour-900); 
+  position: relative;
+  display: flex;
+  overflow-x: hidden;  
+  scroll-snap-type: x mandatory;  
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.content-project-canvas .dots {
+  display: flex;
+  background-color: var(--Colour-900);
+  justify-content: center;
+  align-content: center;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+}
+
+
+.dots .dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 3px;
+  background-color: var(--Colour-200);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+
+.dot.active{
+  scale: 1.42;
+  background-color: var(--Colour-950);
+  transition: 0.5s;
+}
+
+.content-project.active .content-project-title:hover::after{
+  content: '▶';
+  position: absolute;
+  right: 1%;
+  top: 42%;
+}
+
+
+
+
+
+.content-slider img{
+  flex: 1 0 auto;
+  width: 100%;
+  height: auto;
+  scroll-snap-align: center;
+  object-fit: contain;
+  cursor: pointer;
+  transition: 0.5s;  
+}
+

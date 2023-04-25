@@ -1,0 +1,75 @@
+<!-- Playing around with chatgpt-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Spiral</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        svg{
+            display: block;
+            margin: 0 auto;
+            background-color: wheat;
+        }
+    </style>
+    <script src="/scripts/Header.js" type="text/javascript" defer> </script>
+</head>
+<body>
+    <div id="content">
+        <div class="title">Golden Spiral</div>
+                <svg id="golden_Spiral" width="1000" height="1000" xmlns="http://www.w3.org/2000/svg" style="grid-column: 1/-1;"></svg>
+            
+        </div>
+    <script>
+        const golden_Ratio = (1 + Math.sqrt(5)) / 2;
+        const svg = document.getElementById("golden_Spiral");
+        const centreX = 1000 / 2;
+        const centreY = 1000 / 2;
+
+        function polarToCartesian(centreX, centreY, radius, angle_Deg)
+        {
+            const angle_Rad = (angle_Deg - 90) * Math.PI / 180.0;
+
+            return{
+                x: centreX + (radius * Math.cos(angle_Rad)),
+                y: centreY + (radius * Math.sin(angle_Rad))
+            };
+        }
+
+        function create_Golden_Path(iterations)
+        {
+            let pathData = "";
+            let current_Angle = 0;
+            let current_Radius = 1;
+
+            for(let i = 0; i < iterations; i++){
+                const start = polarToCartesian(centreX,centreY,current_Radius, current_Angle);
+                const end = polarToCartesian(centreX,centreY,current_Radius * golden_Ratio, current_Angle + 90);
+                const large_ArcFlag = 0;
+                const sweep_Flag = 1;
+                const radius = current_Radius * golden_Ratio;
+
+                pathData += `M${start.x},${start.y}A${radius},${radius} 0 ${large_ArcFlag},${sweep_Flag} ${end.x},${end.y}`;
+                
+                current_Angle += 90;
+                current_Radius *= golden_Ratio;
+            }
+
+            return pathData
+        }
+
+        const path = document.createElementNS ("http://www.w3.org/2000/svg","path");
+        path.setAttribute("d", create_Golden_Path(42));
+        path.setAttribute("stroke","black");
+        path.setAttribute("fill","none");
+        path.setAttribute("stroke-width","2");
+        svg.appendChild(path);
+        
+    </script>
+    
+    
+</body>
+</html>
