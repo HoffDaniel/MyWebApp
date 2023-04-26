@@ -24,21 +24,12 @@
 :root{
   --ColourShadow: rgb(0,0,0);
   --ColourLink: var(--Colour-50);
+  --ColourLogo: gold;
+  --ColourLogoGrad: radial-gradient(circle, #FFD700, #FFA500);
 
   /*Colour Palette*/
   /*Usefull colour generator https://uicolors.app/create*/
-  --Colour-50:  rgb(243 248 248);
-  --Colour-100: rgb(224 236 237);
-  --Colour-200: rgb(196 218 221);
-  --Colour-300: rgb(155 193 197);
-  --Colour-400: rgb(119 166 172);
-  --Colour-500: rgb(80 131  138);
-  --Colour-600: rgb(69 109  117);
-  --Colour-700: rgb(39  92   94);
-  --Colour-800: rgb(55, 130, 153);
-  --Colour-900: rgb(44, 91, 110);
-  --Colour-950: rgb(22, 65, 80);  
-  
+   
 --Colour-50:  rgb(240 248 251);
 --Colour-100: rgb(217 236 244);
 --Colour-200: rgb(184 219 233);
@@ -91,6 +82,10 @@ a:hover{
   transition: 0.5s;
   text-decoration: underline 1px;
 }
+
+a.content-link{
+
+}
  
 
   
@@ -120,7 +115,7 @@ a:hover{
   font-weight: bold;
   text-align: center;
   padding: 10px;
-  width: max(10%);
+  width: max(15%);
   color: var(--Colour-200);
   background-color: var(--Colour-700);
   border: 3px solid var(--Colour-700);

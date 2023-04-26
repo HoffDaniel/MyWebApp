@@ -12,8 +12,10 @@ template.innerHTML =
 "<div id='header' class='start'>" +
         
 "<div class='navbar'>" +
-    "<a href='#'> " +
-        "<img src='/images/MOO - Copy.png' class='logo' onclick='Fun_Nav()'> " +
+ 
+    "<a href='#' style='display:flex; gap: 10px;'> " +
+        "<span class='icon' onclick='Fun_Nav()'>&#x2630;</span>" +
+        "<img src='/resources/Logo/Logo_14.png' class='logo' onclick='Fun_Nav()'> " +
     "</a>" +
     
     "<div class='nav-links' style='display: block;' >"+ 

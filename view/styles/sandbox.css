@@ -9,8 +9,9 @@
 
 .sand-golden{
   grid-column: 1/-1 ;
-  margin: 10px;
+  margin: 42px;
   height: 700px;
+  width: 1050px;/* width = height + (height/2) */
   display: grid;
   /*Got the grid ratios from here: https://codepen.io/bobby1030/pen/EWmyZW*/
   grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
@@ -23,25 +24,66 @@
   
 }
 
+svg{
+  filter: drop-shadow(7px 7px 4px var(--Colour-900));
+  filter: drop-shadow(-7px 7px 4px black);
+  border: 3px solid black;
+}
+
 .item{
   background-color: var(--Colour-800);
+  background-color: grey;
+  background-color: var(--Colour-200);
   display: flex;
-  border: 1px solid black;
+  border: 2px solid black;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
-  transition: 2s;
+  transition: 4s;
+  box-sizing: border-box;
+}
+
+.item.H{
+  position: absolute;
+  width: 100%;
+  height: 50%; 
+  background-color: transparent;
+  border: 42px solid var(--ColourLogo);
+  border: 69px solid black;
+  border: 69px solid var(--Colour-950);
+  
+  color: var(--ColourLogo);
+}
+
+.item.H.top{
+  border-bottom-width: 35px ;
+  border-top: none;
+  box-shadow: -7px 0px 4px 2px black inset;
+}
+.item.H.bot{
+  bottom: 0;  
+  border-top-width: 34px ;
+  border-bottom: none;
+  box-shadow: -7px 7px 5px 2px black inset;
 }
 
 .item.a{
   grid-area: A;
+  width: 100%;
+  height: 100%;
+  display: block;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  position: relative;
+  justify-content:flex-start;
 }
+
 .item.b{
   grid-area: B;
 }
 .item.c{
-  grid-area: C;
+  grid-area: C;  
 }
 .item.d{
   grid-area: D;
@@ -51,12 +93,17 @@
 }
 .item.f{
   grid-area: F;
+  
 }
 .item.g{
   grid-area: G;
 }
 .item:hover{
   background-color: var(--Colour-400);
+  background-color: transparent;
+  background-color: var(--Colour-400);
+  
+  
   transform: scale(1.01);
   transition: 0.5s;
 }

@@ -12,8 +12,19 @@
     z-index: 999;   
   }
 
+  a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon{
+    font-size: 24px;
+  }
   .logo{
     height: 42px;
+    padding: 3px;
+    border-radius: 10px;
+    border: 3px solid var(--Colour-800);
   }
 
   .navbar {
@@ -47,14 +58,14 @@
     }
     100%{
         /*width: 100%;*/
-        left: 95%;
+        left: 90%;
     }
   }
 
   @keyframes slide-left{
     0%{
         /*width: 50%;*/
-        left: 95%;
+        left: 90%;
     }
     100%{
         /*width: 100%;*/
@@ -86,7 +97,7 @@
   .inactive{
     animation-name: slide-right;
     animation-duration: 1s;
-    left: 95%;
+    left: 90%;
   }
 
   
