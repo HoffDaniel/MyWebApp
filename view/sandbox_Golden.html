@@ -14,9 +14,12 @@
 </head>
 <body>
     <div id="content">
-        <div class="title">Golden Spiral</div>
+        <div class="title">Golden <br> Spiral </div>
         <div class="sand-golden">
-            <div class="item a" id="item-a"></div>
+            <div class="item a" id="item-a" >
+                <div class="item H top"></div>                
+                <div class="item H bot"></div>
+            </div>
             <div class="item b" id="item-b"></div>
             <div class="item c" id="item-c"></div>
             <div class="item d" id="item-d"></div>
@@ -55,9 +58,9 @@
             item.element.appendChild(svg);
     
             const ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-            ellipse.setAttribute("stroke", "gold");
+            ellipse.setAttribute("stroke", "var(--Colour-800)");
             ellipse.setAttribute("fill", "none");
-            ellipse.setAttribute("stroke-width", "2");
+            ellipse.setAttribute("stroke-width", "42");
             svg.appendChild(ellipse);
     
             item.ellipse = ellipse;
