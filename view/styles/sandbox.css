@@ -24,10 +24,10 @@
   
 }
 
-svg{
+svg{/*
   filter: drop-shadow(7px 7px 4px var(--Colour-900));
   filter: drop-shadow(-7px 7px 4px black);
-  border: 3px solid black;
+  */
 }
 
 .item{
@@ -51,21 +51,21 @@ svg{
   background-color: transparent;
   border: 42px solid var(--ColourLogo);
   border: 69px solid black;
-  border: 69px solid var(--Colour-950);
+  border: 42px solid var(--Colour-950);
   
   color: var(--ColourLogo);
 }
 
 .item.H.top{
-  border-bottom-width: 35px ;
+  border-bottom-width: 21px ;
   border-top: none;
-  box-shadow: -7px 0px 4px 2px black inset;
+  box-shadow: -7px 0px 4px 2px var(--Colour-800) inset;
 }
 .item.H.bot{
   bottom: 0;  
-  border-top-width: 34px ;
+  border-top-width: 21px ;
   border-bottom: none;
-  box-shadow: -7px 7px 5px 2px black inset;
+  box-shadow: -7px 7px 5px 2px var(--Colour-800) inset;
 }
 
 .item.a{
