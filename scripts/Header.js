@@ -15,13 +15,13 @@ template.innerHTML =
  
     "<a href='#' style='display:flex; gap: 10px;'> " +
         "<span class='icon' onclick='Fun_Nav()'>&#x2630;</span>" +
-        "<img src='/resources/Logo/Logo_14.png' class='logo' onclick='Fun_Nav()'> " +
+        "<img src='/resources/Logo/Logo_16.png' class='logo' onclick='Fun_Nav()'> " +
     "</a>" +
     
     "<div class='nav-links' style='display: block;' >"+ 
-        "<a href='index.html'>Home</a>" +
-        "<a href='about.html'>About</a>" +
-        "<a href='projects.html'>Portfolio </a>" +        
+        "<a href='/index.html'>Home</a>" +
+        "<a href='/view/about.html'>About</a>" +
+        "<a href='/view/projects.html'>Portfolio </a>" +        
         "<div class='dropdown'>" + 
             "<button class='dropbtn'>SandBox " + 
                 

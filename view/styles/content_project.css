@@ -25,6 +25,7 @@
   grid-column: 1 / -1; /* Span all columns*/
   grid-row: 2; /* Start on row 2*/
   border-radius: 10px;
+  
   transition: 1s;
 }
 
@@ -47,8 +48,9 @@
   grid-area: canvas;
   display: grid;
   grid-gap: 10px;
-  height: 700px;
   border-radius: 10px;
+  
+  height: 700px;
 }
 .content-project > p{
   display: grid;

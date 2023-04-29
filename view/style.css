@@ -74,18 +74,33 @@ p{
   line-height: 24px;
 }
 a{
+  
   text-decoration: none;
   color:var(--ColourLink);
   transition: 1s;
 }
 a:hover{
+  
+  transform: translateY(-3px) !important;
   transition: 0.5s;
-  text-decoration: underline 1px;
 }
 
 a.content-link{
-
+    font-size: 18px;   
+    background-color: var(--Colour-900) !important; 
+    border-radius: 10px;
+    padding: 5px;
+    width: max-content;
+    height: max-content;
 }
+
+i{
+  transform: translateY(-3px);
+}
+
+
+
+
  
 
   
