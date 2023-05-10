@@ -33,7 +33,7 @@ template.innerHTML =
                 "<a href='/view/sandbox_Golden.html'>Golden Spiral</a>"  +
             "</div>" +
         "</div>" +
-        "<a href='contact.html'>Contact</a>" +
+        "<a href='/view/contact.html'>Contact</a>" +
     "</div>" +
 "</div>"+
 "</div>";
