@@ -1,0 +1,82 @@
+/*==========================================  ==========================================*/
+/*========================================== Sandbox: Astar ==========================================*/
+/*==========================================  ==========================================*/
+#Astar_grid {
+  grid-column: 1 / -1;
+  --grid_Size: 21;
+  height: 800px;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(var(--grid_Size),1fr);
+  grid-template-rows: repeat(var(--grid_Size),1fr);  
+  position: relative;
+  gap: 1px;
+}
+
+#Astar_grid.fun{
+  /*--grid_Size: 21;*/
+  grid-template-columns: 1fr 2fr 4fr 6fr 8fr 10fr 12fr 14fr 16fr 18fr 20fr 18fr 16fr 14fr 12fr 10fr 8fr 6fr 4fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr 4fr 6fr 8fr 10fr 12fr 14fr 16fr 18fr 20fr 18fr 16fr 14fr 12fr 10fr 8fr 6fr 4fr 2fr 1fr;
+}
+
+button:hover{
+  background-color: var(--Colour-900);
+}
+
+#button_Start , #button_Reset, #button_Random{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: var(--Colour-200);
+  background-color:var(--Colour-800) ;
+}
+
+#info{
+  position: fixed;
+  display: none;
+  background-color: var(--Colour-950);
+  bottom: 1%;
+  left: 1%;
+  padding: 10px;
+  border-radius: 10px;
+  transition: opacity 0.5s ease-in;
+}
+
+.Astar_cell{
+  background-color: var(--Colour-300);
+  border-radius: 50px;
+}
+#start{
+  background-color: rgb(35, 192, 61) !important;
+  overflow: auto;
+  resize: both;
+}
+
+#goal{
+  background-color: rgb(197, 45, 184);
+  overflow: auto;
+  resize: both;
+}
+
+.Astar_cell.path{
+  background-color: rgb(17, 80, 1) !important;
+}
+
+.Astar_cell.visited{
+  background-color: orangered;
+  
+}
+
+.Astar_cell.obstacle{
+  background-color: brown !important;
+}
+
+.Astar_cell.current{
+  background-color: rgb(65, 42, 165) !important;
+}
+
+.Astar_cell.open{
+  background-color: yellow;  
+}
+

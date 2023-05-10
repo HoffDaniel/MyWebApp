@@ -25,6 +25,7 @@
     padding: 3px;
     border-radius: 10px;
     border: 3px solid var(--Colour-800);
+    animation: orbit 2.7s linear infinite;
   }
 
   .navbar {
