@@ -10,9 +10,9 @@
 //Create grid
 //Events
 const Astar_grid = document.getElementById("Astar_grid");
-const grid = [];
+let grid = [];
 const grid_Style = getComputedStyle(Astar_grid);
-const grid_Size = parseInt(grid_Style.getPropertyValue('--grid_Size').trim()); //trim for cleaner string -> not absolutly necessary
+let grid_Size = parseInt(grid_Style.getPropertyValue('--grid_Size'));
 let openSet = [];
 let closedSet = [];
 let costFromStart = {}; //gScore
@@ -20,57 +20,119 @@ let costToGoal = {} //hScore
 let node_Start = document.getElementById("start");
 let node_Goal = document.getElementById("goal");
 let node_Current = node_Start;
-
-//Make grid 
-for(let row = 0; row < grid_Size; row++){
-    const currentRow = []
-    for(let col = 0; col < grid_Size; col++){
-        const Astar_cell = document.createElement("div");
-        Astar_cell.classList.add("Astar_cell");        
-        if (row == 0 && col == 0) {Astar_cell.setAttribute("id","start");}
-        if (row == (grid_Size - 1) && col == (grid_Size - 1)) {Astar_cell.setAttribute("id","goal");}
-        
-        //Data for A*
-        //Keys: row and collumn 
-        //h_ / g_ / f_Score 
-        Astar_cell.dataset.row = row;
-        Astar_cell.dataset.col = col;
-        Astar_cell.dataset.hScore = 0;
-        Astar_cell.dataset.gScore = 0;
-        Astar_cell.dataset.fScore = 0;
-        Astar_cell.dataset.parent = [0 , 0];
-
-        //just making sure to handle when "neighbours" are outside bounds //out of bound handeling
-        const maxNum = grid_Size - 1; //max array value
-        const minNum = 0 //min array value
-        pre_row = Math.max(row - 1, minNum);
-        pre_col = Math.max(col - 1, minNum);
-        next_row = Math.min(row + 1, maxNum);
-        next_col = Math.min(col + 1, maxNum);
-
-        Astar_cell.dataset.neighbours = [
-            [pre_row , pre_col],
-            [pre_row , col],
-            [pre_row , next_col],
-            [row, pre_col],
-            //[current_node]
-            [row, next_col],
-            [next_row, pre_col],
-            [next_row, col],
-            [next_row, next_col]
-        ];
-
-        Astar_cell.addEventListener("click", cellClick);
-        //Astar_cell.addEventListener("mousedown", cellClick);
-        
-        Astar_grid.appendChild(Astar_cell);
-        currentRow.push(Astar_cell);
-    }
-    grid.push(currentRow);
+let mouse_down = false;
+//handle mouse
+document.body.onmousedown = () => { 
+    mouse_down = true; 
+}
+document.body.onmouseup = () => {
+    mouse_down = false;
 }
 
+function maxNum(){
+    let maxNum = grid_Size - 1;
+    return maxNum;
+}
+
+function minNum(){
+    let minNum = grid_Size - grid_Size;
+    return minNum;
+}
+//Make grid 
+make_Grid();
+
+//Make slider to control grid size
+let grid_Slider = document.getElementById("grid_Sizer");
+
+let grid_Size_Display = document.getElementById("grid_Size");
+grid_Size_Display.textContent = grid_Slider.value = grid_Size + " x " + grid_Size;
+
+grid_Slider.oninput = function() {
+  grid_Size = this.value;
+  grid_Size_Display.textContent = grid_Size + " x " + grid_Size;
+  document.documentElement.style.setProperty('--grid_Size', grid_Size);
+  
+  update_Grid(grid_Size);
+}
+
+function make_Grid(){
+    openSet = [];
+    closedSet = [];
+    costFromStart = {}; //gScore
+    costToGoal = {} //hScore 
+    node_Start = document.getElementById("start");
+    node_Goal = document.getElementById("goal");
+    node_Current = node_Start;
+    mouse_down = false;
+    for(let row = 0; row < grid_Size; row++){
+        const currentRow = []
+        for(let col = 0; col < grid_Size; col++){
+            const Astar_cell = document.createElement("div");
+            Astar_cell.classList.add("Astar_cell");        
+            if (row == 0 && col == 0) {Astar_cell.setAttribute("id","start");}
+            if (row == (grid_Size - 1) && col == (grid_Size - 1)) {Astar_cell.setAttribute("id","goal");}
+            
+            //Data for A*
+            //Keys: row and collumn 
+            //h_ / g_ / f_Score 
+            Astar_cell.dataset.row = row;
+            Astar_cell.dataset.col = col;
+            Astar_cell.dataset.hScore = 0;
+            Astar_cell.dataset.gScore = 0;
+            Astar_cell.dataset.fScore = 0;
+            Astar_cell.dataset.parent = [0 , 0];
+    
+            //just making sure to handle when "neighbours" are outside bounds //out of bound handeling
+            
+            //pre_row = Math.max(row - 1, minNum);
+            //pre_col = Math.max(col - 1, minNum);
+            //next_row = Math.min(row + 1, maxNum);
+            //next_col = Math.min(col + 1, maxNum);
+            pre_row = row - 1;
+            pre_col = col - 1;
+            next_row = row + 1;
+            next_col = col + 1;
+    
+            Astar_cell.dataset.neighbours = [
+                [pre_row , pre_col],
+                [pre_row , col],
+                [pre_row , next_col],
+                [row, pre_col],
+                //[current_node]
+                [row, next_col],
+                [next_row, pre_col],
+                [next_row, col],
+                [next_row, next_col]
+            ];
+    
+            Astar_cell.addEventListener("mouseover", cellClick);
+            Astar_cell.addEventListener("click", cellClick);
+            
+            Astar_grid.appendChild(Astar_cell);
+            currentRow.push(Astar_cell);
+        }
+        grid.push(currentRow);
+    }
+}
+
+function update_Grid(gridSize){
+    grid = [];
+    let Astar_grid =document.getElementById('Astar_grid');
+
+    while(Astar_grid.firstChild){
+        Astar_grid.removeChild(Astar_grid.firstChild);
+    }
+    Astar_grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    Astar_grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+    
+    make_Grid();
+}
 function cellClick(event){
     const cell = event.target;
+    if(event.type === "click"){
+        cell.classList.toggle("obstacle");
+    }
+    if(!mouse_down) return
     cell.classList.toggle("obstacle");
 }
 
@@ -78,7 +140,6 @@ function showInfo(text){
     const info = document.getElementById("info");
     info.style.display = "block";
     info.style.opacity = "1";
-    info.innerText = "Info: \n" + text;
     info.innerText = text;
 
     // After 3 seconds, start fading out
@@ -100,8 +161,9 @@ document.getElementById("button_Start").addEventListener("click", async() =>
         //A*
         //Get the starting-, current-, and goal-nodes -> in case start and goal have been changed
         node_Start = document.getElementById("start");
-        node_Current = node_Start;
         if(node_Start===null){return;}//error message: for some reason there is no start etc...
+        node_Current = node_Start;
+        node_Current.classList.toggle("current");
         openSet.push(node_Start);
         node_Goal = document.getElementById("goal");
         if(node_Goal===null){return;}//error message: for some reason there is no goal etc...        
@@ -109,10 +171,13 @@ document.getElementById("button_Start").addEventListener("click", async() =>
         
 
         while(openSet.length > 0){
+            //openSet = document.getElementsByClassName("open");
+            //closedSet = document.getElementsByClassName("visited");
+
             //Draw node current
             node_Current.classList.toggle("current");
             //current is lowest f Score in openSet
-            node_Current = get_min_fScore(openSet); 
+            node_Current = get_min_fScore(); 
             //Draw node current
             node_Current.classList.toggle("current");
             
@@ -123,42 +188,52 @@ document.getElementById("button_Start").addEventListener("click", async() =>
                 console.log("Done");
                 return build_Path();
             }
-            
             let removedElement = openSet.splice(openSet.indexOf(node_Current),1); //at openSet's index for "node_current" remove "1" item
-            removedElement[0].classList.toggle("visited");
-            removedElement[0].classList.toggle("open");
+            removedElement[0].classList.add("visited");
+            removedElement[0].classList.remove("open");
             closedSet.push(removedElement[0]);
 
             const neigh_array = get_Neighbours(node_Current);
             neigh_array.forEach((neighbour) =>{
                 //neighbour[0] == row || y
                 //neighbour[1] == column || x
+                if (neighbour[0] < minNum() || 
+                    neighbour [1] < minNum() ||
+                    neighbour[0] > maxNum() || 
+                    neighbour [1] > maxNum()) {
+                    return;
+                }
                 const neigh = grid[neighbour[0]][neighbour[1]];
                 const tmp_gScore = get_gScore(node_Current,node_Start) + get_gScore(neigh,node_Current);
 
                 //is it closed set?
-                if(closedSet.indexOf(neigh) != -1) return //go next neigh because of our out of bound handling we want to avoid putting the current node through it again(havent tested if it would make a difference)
+                //if(closedSet.indexOf(neigh) != -1) return 
+                if(neigh.classList.contains("visited")){
+                    return;
+                }
                 //is it an obstacle?
                 if(neigh.classList.contains("obstacle")) return   
                 //is in openset?
-                if(openSet.indexOf(neigh) != -1){ 
-                    if(tmp_gScore > neigh.dataset.gScore)return
+                if(neigh.classList.contains("open")){
+                    if(tmp_gScore >= neigh.dataset.gScore)return
                 }
-                else{//is not in openSet
-                    neigh.classList.toggle("open");
-                    openSet.push(neigh);
-                }
-                neigh.dataset.gScore = tmp_gScore;
-                neigh.dataset.parent = [node_Current.dataset.row, node_Current.dataset.col];
-                neigh.dataset.fScore = neigh.dataset.gScore + get_hScore(neigh, node_Goal);
+                //else is nor in openSet nor in closedSet nor an obstacle
+                neigh.classList.add("open");
                 
+                neigh.dataset.gScore = tmp_gScore;
+                neigh.dataset.hScore = get_hScore(neigh, node_Goal);
+                
+                neigh.dataset.parent = [node_Current.dataset.row, node_Current.dataset.col];
+                neigh.dataset.fScore = neigh.dataset.gScore + neigh.dataset.hScore;
+                openSet.push(neigh);
+                //showInfo(neigh.dataset.fScore);
                 
             });
             //console.log("open - closed - sets:");
             //console.log(openSet);
             //console.log(closedSet);
             //3 * 7 + 3 * 7 
-            await sleep(42);
+            await sleep(0);
         }
         showInfo("No path found!");
         
@@ -176,7 +251,7 @@ document.getElementById("button_Random").addEventListener("click", () => {
         //make random obstcles
         let cells = document.getElementsByClassName("Astar_cell");     
         for(let cell of cells){
-            if(cell.id === "start" || cell.id === "goal") continue
+            if(cell.id === "start" || cell.id === "goal" || cell.nodeName === "BUTTON") continue
             //if(cell.classList.contains("obstacle")) continue
 
             let rand = Math.random();
@@ -195,6 +270,7 @@ document.getElementById("button_Reset").addEventListener("click", () => {
         let cells = document.getElementsByClassName("Astar_cell");     
         for(let cell of cells){
             //if(cell.classList.contains("obstacle")) continue
+            if (cell.nodeName === "BUTTON") continue
             cell.className = 'Astar_cell';           
         }
         openSet = [];
@@ -217,15 +293,16 @@ function sleep(ms) {
 function get_min_fScore(){
     let best_F = Number.MAX_SAFE_INTEGER;
     let best_Key = 0;
-    openSet.forEach((set,key) => {
-        let tmp_f = set.dataset.fScore;
+    for (let i = 0; i < openSet.length; i++) {
+        const tmp_f = openSet[i].fScore;
         if(tmp_f<best_F)
         {
             best_F = tmp_f;
-            best_Key = key;
+            best_Key = i;
         }
-    })
+    }
     return openSet[best_Key];
+
 }
 
 //Check if goal reached
@@ -236,7 +313,7 @@ function reachedGoal()
             check = true;
             showInfo("Path found!");
     }
-    console.log("chek: " + check);
+    console.log("goal Reached?: " + check);
     return check;
 }
 
@@ -261,21 +338,22 @@ async function build_Path(){
 function get_hScore(current, goal){
     let hCol = Math.pow(goal.dataset.col - current.dataset.col, 2); //i.e. X 
     let hRow = Math.pow(goal.dataset.row - current.dataset.row, 2); //i.e. Y
-
-    return Math.sqrt(hCol + hRow);    
+    let score = Math.sqrt(hCol + hRow);
+    return score;     
 }
 
 //G Score -> cost from start
 function get_gScore(current, start){
     let gCol = Math.pow(start.dataset.col - current.dataset.col, 2);
     let gRow = Math.pow(start.dataset.row - current.dataset.row, 2);
-
-    return Math.sqrt(gCol + gRow);    
+    let score = Math.sqrt(gCol + gRow);
+    return score;    
 }
 
 //F Score -> sum of H and G //these get function could be different
 function get_fScore(hScore, gScore){
-    return hScore + gScore;    
+    let score = hScore + gScore;
+    return score;    
 }
 
 function get_fScore(start, current, goal){
@@ -286,8 +364,9 @@ function get_fScore(start, current, goal){
 function get_Neighbours(cell){
     const regex = /\d+/g; //Regex match one or more digits
     const numbers = cell.dataset.neighbours.match(regex).map(Number);
+    const size = numbers.length/2;
     const neigh_array = [];//there should be 8 neighbours (16 -> 8 row +  8 col)
-    for(let i = 0; i < 8; i++){
+    for(let i = 0; i < size; i++){
         neigh_array.push ([numbers[i*2], numbers[i*2 + 1]]);
     }
     return neigh_array;

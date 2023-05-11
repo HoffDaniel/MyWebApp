@@ -142,3 +142,11 @@ i{
   border-radius: 10px;
 }
 
+.content-description{
+  background-color: var(--Colour-950);
+  padding: 10px;
+  color: var(--Colour-200);
+  border-radius: 10px;
+}
+
+
