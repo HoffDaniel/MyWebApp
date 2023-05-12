@@ -25,17 +25,20 @@
                     and if there is obstacles it will try and avoid them
 
                 </div>
-                <button id="button_Start">Start</button>  
+                <button id="button_Run">Run</button>  
                 <button id="button_Reset">Reset</button>  
                 <button id="button_Random">Random Obstacles</button>
-                <input type="range" min="10" max="50" id="grid_Sizer"> 
-                <span id="grid_Size"></span></input>
-                <button id="start">Start</button>                
+                <button id="slider">
+                    <input type="range" min="10" max="50" id="grid_Sizer"> 
+                    <span id="grid_Size" style="color: var(--Colour-200);"></span></input>
+                </button>
+                <button id="start" onclick="showInfo('start clicked')">Start</button>                
                 <button id="goal">Goal</button>               
                 <button class="Astar_cell">Cell</button>
                 <button class="Astar_cell path">Path</button>
                 <button class="Astar_cell open"> Open</button>
                 <button class="Astar_cell visited"> Visited</button>
+                <button class="Astar_cell obstacle"> Obstacle</button>
                 <button class="Astar_cell current"> Current</button>
                 
             </div>
