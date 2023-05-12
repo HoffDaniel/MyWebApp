@@ -16,14 +16,15 @@
   margin: 10px;
   display: grid;
   grid-template-columns: repeat(var(--grid_Size),1fr);
-  grid-template-rows: repeat(var(--grid_Size),1fr);  
+  grid-template-rows: repeat(var(--grid_Size),1fr); 
+  border-radius: 3px; 
+  background-color: var(--Colour-800);
+  border: 2px solid var(--Colour-800);
   
-  gap: 0px;
+  gap: 2px;
 }
 
 #grid_Size{
-  color: black;
-  padding-bottom: 10px;
   text-align: center;
 }
 
@@ -41,17 +42,36 @@
 }
 
 
-button:hover{
-  background-color: var(--Colour-900);
-}
 
-#button_Start , #button_Reset, #button_Random{
+
+#button_Run , #button_Reset, #button_Random, #slider{
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
   font-size: 16px;
   color: var(--Colour-200);
-  background-color:var(--Colour-800) ;
+  background-color:var(--Colour-900);
+  transition: 1s;
+}
+
+#slider{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#button_Run:hover , #button_Reset:hover, #button_Random:hover{
+  transform: translateY(-3px);
+  background-color: var(--Colour-950);
+  transition: 0.5s;
+}
+
+#Astar_menu button{
+  margin: 0px;
+  border-radius: 10px;
+  border: none;
 }
 
 #info{
@@ -70,6 +90,7 @@ button:hover{
   background-color: var(--Colour-300);
   border-radius: 3px;
   /**/transition: 1s;/**/
+
 }
 #start{
   background-color: rgb(35, 192, 61) !important;

@@ -155,7 +155,7 @@ function showInfo(text){
 }
 
 //Start - Button - A* Algorithm
-document.getElementById("button_Start").addEventListener("click", async() =>
+document.getElementById("button_Run").addEventListener("click", async() =>
     {   
         showInfo("Start");
         //A*
