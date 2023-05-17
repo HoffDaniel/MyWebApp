@@ -20,7 +20,7 @@
                 <div class="content-description">
                     <b>Description:</b><br><br>
                     This is a little A* search algorithm. 
-                    Select a start and goal cell and if you start 
+                    Select a start and goal cell and if you run 
                     the algorithm it will try and find a short path 
                     and if there is obstacles it will try and avoid them
 
@@ -29,18 +29,24 @@
                 <button id="button_Reset">Reset</button>  
                 <button id="button_Random">Random Obstacles</button>
                 <button id="slider">
+                    <span id="grid_Size"></span>
                     <input type="range" min="10" max="50" id="grid_Sizer"> 
-                    <span id="grid_Size" style="color: var(--Colour-200);"></span></input>
+                    </input>
                 </button>
-                <button id="start" onclick="showInfo('start clicked')">Start</button>                
-                <button id="goal">Goal</button>               
-                <button class="Astar_cell">Cell</button>
-                <button class="Astar_cell path">Path</button>
-                <button class="Astar_cell open"> Open</button>
-                <button class="Astar_cell visited"> Visited</button>
-                <button class="Astar_cell obstacle"> Obstacle</button>
-                <button class="Astar_cell current"> Current</button>
+                <button id="start" onclick="selectionClick(event,'start')">Select Start</button>                
+                <button id="goal"  onclick="selectionClick(event,'goal')">Select Goal</button>  
+                <button class="Astar_cell obstacle selected"  onclick="selectionClick(event,'obstacle')"> Select Obstacle</button>
                 
+                <div id="legend">                   
+                    <div class="Astar_cell legend-item" id="start"></div><div class="legend-label">Start</div>
+                    <div class="Astar_cell legend-item" id="goal"></div><div class="legend-label">Goal</div>
+                    <div class="Astar_cell legend-item"></div><div class="legend-label">Cell</div>
+                    <div class="Astar_cell path legend-item"></div><div class="legend-label">Path</div>
+                    <div class="Astar_cell open legend-item"></div><div class="legend-label">OpenSet</div>
+                    <div class="Astar_cell visited legend-item"></div><div class="legend-label">ClosedSet</div>
+                    <div class="Astar_cell obstacle legend-item"></div><div class="legend-label">Obstacle</div>
+                    <div class="Astar_cell current legend-item"></div><div class="legend-label">Current</div>
+                </div>
             </div>
         </div>
             

@@ -21,6 +21,7 @@ let node_Start = document.getElementById("start");
 let node_Goal = document.getElementById("goal");
 let node_Current = node_Start;
 let mouse_down = false;
+let coursor_state = "obstacle";
 //handle mouse
 document.body.onmousedown = () => { 
     mouse_down = true; 
@@ -45,11 +46,12 @@ make_Grid();
 let grid_Slider = document.getElementById("grid_Sizer");
 
 let grid_Size_Display = document.getElementById("grid_Size");
-grid_Size_Display.textContent = grid_Slider.value = grid_Size + " x " + grid_Size;
+grid_Slider.value =  grid_Size;
+grid_Size_Display.textContent  =  "Grid Size: " + grid_Size + " x " + grid_Size;
 
 grid_Slider.oninput = function() {
   grid_Size = this.value;
-  grid_Size_Display.textContent = grid_Size + " x " + grid_Size;
+  grid_Size_Display.textContent = "Grid Size: " + grid_Size + " x " + grid_Size;
   document.documentElement.style.setProperty('--grid_Size', grid_Size);
   
   update_Grid(grid_Size);
@@ -127,16 +129,45 @@ function update_Grid(gridSize){
     
     make_Grid();
 }
+function selectionClick(event, state){
+    const cell = event.target;
+    let previous_cell = document.getElementsByClassName("selected");
+    previous_cell[0].classList.remove("selected");
+    cell.classList.add("selected");
+    coursor_state = state;
+}
 function cellClick(event){
     const cell = event.target;
     if(event.type === "click"){
-        cell.classList.toggle("obstacle");
-    }
-    if(!mouse_down) return
+        let tmp = document.getElementById(coursor_state);
+        switch (coursor_state) {
+            case "start":                
+                tmp.removeAttribute("id");
+                cell.id = coursor_state;
+                break;
+            case "goal":
+                tmp.removeAttribute("id");
+                cell.id = coursor_state;
+                break;
+            case "obstacle":
+                cell.classList.toggle("obstacle");               
+                break;        
+            default:
+                break;
+        }
+        return;
+    }     
+    if(!mouse_down) return  
+    //Only when mouse is held down and coursor is over a cell, then change cell              
     cell.classList.toggle("obstacle");
 }
+//Change mouse coursor ish
+//document.body.style.cursor = 'url(\'/resources/images/MOO - Copy.png\'), auto';
 
+//Pop up info just a little extra to make pressing button in the menu feel more like they do something
 function showInfo(text){
+    //document.body.style.cursor = 'url(\'/resources/images/MOO.png\'), auto';
+    console.log(document.body.style.cursor);
     const info = document.getElementById("info");
     info.style.display = "block";
     info.style.opacity = "1";
@@ -251,7 +282,7 @@ document.getElementById("button_Random").addEventListener("click", () => {
         //make random obstcles
         let cells = document.getElementsByClassName("Astar_cell");     
         for(let cell of cells){
-            if(cell.id === "start" || cell.id === "goal" || cell.nodeName === "BUTTON") continue
+            if(cell.closest('#Astar_menu') || cell.id === "goal" || cell.id === "start" ) continue
             //if(cell.classList.contains("obstacle")) continue
 
             let rand = Math.random();
@@ -270,7 +301,7 @@ document.getElementById("button_Reset").addEventListener("click", () => {
         let cells = document.getElementsByClassName("Astar_cell");     
         for(let cell of cells){
             //if(cell.classList.contains("obstacle")) continue
-            if (cell.nodeName === "BUTTON") continue
+            if(cell.closest('#Astar_menu')) continue
             cell.className = 'Astar_cell';           
         }
         openSet = [];

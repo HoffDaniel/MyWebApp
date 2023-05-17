@@ -42,10 +42,7 @@
 }
 
 
-
-
-#button_Run , #button_Reset, #button_Random, #slider{
-  margin: 10px;
+#Astar_menu button{
   padding: 10px;
   border-radius: 10px;
   font-size: 16px;
@@ -53,6 +50,12 @@
   background-color:var(--Colour-900);
   transition: 1s;
 }
+
+#Astar_menu button:hover{transform: translateY(-3px);
+  background-color: var(--Colour-950);
+  transition: 0.5s;
+}
+
 
 #slider{
   display: grid;
@@ -62,17 +65,7 @@
   gap: 10px;
 }
 
-#button_Run:hover , #button_Reset:hover, #button_Random:hover{
-  transform: translateY(-3px);
-  background-color: var(--Colour-950);
-  transition: 0.5s;
-}
 
-#Astar_menu button{
-  margin: 0px;
-  border-radius: 10px;
-  border: none;
-}
 
 #info{
   position: fixed;
@@ -84,6 +77,27 @@
   border-radius: 10px;
   border-bottom: 3px solid var(--Colour-200);
   transition: opacity 0.5s ease-in;
+}
+.selected{
+  box-shadow: 0px 0px 3px 3px var(--Colour-800) !important;
+}
+
+#legend{
+  background-color: var(--Colour-950);
+  display: grid;
+  grid-template-columns: repeat(4,1fr) ;
+  border-radius: 10px;
+}
+
+.legend-item{
+  color: inherit;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+}
+
+.legend-label{
+  margin: 10px;
 }
 
 .Astar_cell{
@@ -99,7 +113,7 @@
 }
 
 #goal{
-  background-color: rgb(197, 45, 184);
+  background-color: rgb(197, 45, 184) !important;
   overflow: auto;
   resize: both;
 }
