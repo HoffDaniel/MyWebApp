@@ -13,6 +13,7 @@ const Astar_grid = document.getElementById("Astar_grid");
 let grid = [];
 const grid_Style = getComputedStyle(Astar_grid);
 let grid_Size = parseInt(grid_Style.getPropertyValue('--grid_Size'));
+let rand_Value = parseFloat(grid_Style.getPropertyValue('--rand_Value'));
 let openSet = [];
 let closedSet = [];
 let costFromStart = {}; //gScore
@@ -22,6 +23,7 @@ let node_Goal = document.getElementById("goal");
 let node_Current = node_Start;
 let mouse_down = false;
 let coursor_state = "obstacle";
+let h_state = "Euclidean";///////////////
 //handle mouse
 document.body.onmousedown = () => { 
     mouse_down = true; 
@@ -42,10 +44,21 @@ function minNum(){
 //Make grid 
 make_Grid();
 
-//Make slider to control grid size
-let grid_Slider = document.getElementById("grid_Sizer");
+//Make slider to control random obstacles value (0-1)
+let random_Slider = document.querySelector('#slider_Random #slider_Input');
+let random_Value_Display = document.querySelector('#slider_Random #slider_Value');
+random_Slider.value =  rand_Value;
+random_Value_Display.textContent  =  "Random Obstacles: " + rand_Value;
 
-let grid_Size_Display = document.getElementById("grid_Size");
+random_Slider.oninput = function(){
+    rand_Value = this.value;
+    random_Value_Display.textContent  =  "Random Ostacles: " + rand_Value;
+}
+
+
+//Make slider to control grid size
+let grid_Slider = document.querySelector('#slider_Grid #slider_Input');
+let grid_Size_Display = document.querySelector('#slider_Grid #slider_Value');
 grid_Slider.value =  grid_Size;
 grid_Size_Display.textContent  =  "Grid Size: " + grid_Size + " x " + grid_Size;
 
@@ -86,25 +99,11 @@ function make_Grid(){
     
             //just making sure to handle when "neighbours" are outside bounds //out of bound handeling
             
-            //pre_row = Math.max(row - 1, minNum);
-            //pre_col = Math.max(col - 1, minNum);
-            //next_row = Math.min(row + 1, maxNum);
-            //next_col = Math.min(col + 1, maxNum);
-            pre_row = row - 1;
-            pre_col = col - 1;
-            next_row = row + 1;
-            next_col = col + 1;
     
             Astar_cell.dataset.neighbours = [
-                [pre_row , pre_col],
-                [pre_row , col],
-                [pre_row , next_col],
-                [row, pre_col],
-                //[current_node]
-                [row, next_col],
-                [next_row, pre_col],
-                [next_row, col],
-                [next_row, next_col]
+                [row-1 , col-1], [row-1 , col], [row+1 , col+1],
+                    [row, col-1],    /*[current_node */ [row, col+1],
+                    [row+1, col-1], [row+1, col], [row+1, col+1]
             ];
     
             Astar_cell.addEventListener("mouseover", cellClick);
@@ -129,12 +128,73 @@ function update_Grid(gridSize){
     
     make_Grid();
 }
-function selectionClick(event, state){
+function cellSelectionClick(event, state){
     const cell = event.target;
     let previous_cell = document.getElementsByClassName("selected");
-    previous_cell[0].classList.remove("selected");
+    previous_cell[0].classList.remove("selected"); //make sure its the first selected 
     cell.classList.add("selected");
     coursor_state = state;
+}
+function heuristicSelectionClick(event, state){
+    const cell = event.target;
+    let previous_cell = document.getElementsByClassName("selected");
+    previous_cell[1].classList.remove("selected");
+    cell.classList.add("selected");
+    h_state = state;    
+    setNeighbours();
+}
+
+function setNeighbours(){
+
+    let cells = document.getElementsByClassName("Astar_cell"); 
+    showInfo(h_state);
+    console.log(h_state);
+    switch (h_state) {        
+        case "Euclidean": 
+            console.log("E case entered");                
+            for(let cell of cells){
+                if(cell.closest('#Astar_menu')) continue
+                let row = parseInt(cell.dataset.row);
+                let col = parseInt(cell.dataset.col);                
+                cell.dataset.neighbours = [
+                    [row-1 , col-1], [row-1 , col], [row+1 , col+1],
+                    [row, col-1],    /*[current_node */ [row, col+1],
+                    [row+1, col-1], [row+1, col], [row+1, col+1]
+                ];         
+            }                   
+            break;
+        case "Manhattan":
+            
+            console.log("M case entered");     
+            for(let cell of cells){
+                if(cell.closest('#Astar_menu')) continue
+                let row = parseInt(cell.dataset.row);
+                let col = parseInt(cell.dataset.col);       
+                cell.dataset.neighbours = [
+                    /*[row-1 , col-1],*/ [row-1 , col], /*[row+1 , col+1],*/
+                    [row, col-1],    /*[current_node */ [row, col+1],
+                    /*[row+1, col-1],*/ [row+1, col] /*, [row+1, col+1]*/
+                ];         
+            }                   
+            break;
+        case "Diagonal":
+            
+            console.log("D case entered");  
+            for(let cell of cells){
+                if(cell.closest('#Astar_menu')) continue
+                let row = parseInt(cell.dataset.row);
+                let col = parseInt(cell.dataset.col);                
+                cell.dataset.neighbours = [
+                    [row-1 , col-1], [row-1 , col], [row+1 , col+1],
+                    [row, col-1],    /*[current_node */ [row, col+1],
+                    [row+1, col-1], [row+1, col], [row+1, col+1]
+                ];         
+            }                   
+            break;      
+        default:
+            console.log("no case? wtf bra");
+            break;
+    }
 }
 function cellClick(event){
     const cell = event.target;
@@ -206,11 +266,11 @@ document.getElementById("button_Run").addEventListener("click", async() =>
             //closedSet = document.getElementsByClassName("visited");
 
             //Draw node current
-            node_Current.classList.toggle("current");
+            node_Current.classList.remove("current");
             //current is lowest f Score in openSet
             node_Current = get_min_fScore(); 
             //Draw node current
-            node_Current.classList.toggle("current");
+            node_Current.classList.add("current");
             
 
             
@@ -219,9 +279,12 @@ document.getElementById("button_Run").addEventListener("click", async() =>
                 console.log("Done");
                 return build_Path();
             }
-            let removedElement = openSet.splice(openSet.indexOf(node_Current),1); //at openSet's index for "node_current" remove "1" item
-            removedElement[0].classList.add("visited");
-            removedElement[0].classList.remove("open");
+            
+
+            let removedElement = removeElement(openSet,node_Current); //at openSet's index for "node_current" remove "1" item
+            removedElement.classList.add("visited");
+            removedElement.classList.remove("open");
+            console.log(removedElement[0]);
             closedSet.push(removedElement[0]);
 
             const neigh_array = get_Neighbours(node_Current);
@@ -232,38 +295,32 @@ document.getElementById("button_Run").addEventListener("click", async() =>
                     neighbour [1] < minNum() ||
                     neighbour[0] > maxNum() || 
                     neighbour [1] > maxNum()) {
+                        console.log("min max triggered")
                     return;
                 }
                 const neigh = grid[neighbour[0]][neighbour[1]];
                 const tmp_gScore = get_gScore(node_Current,node_Start) + get_gScore(neigh,node_Current);
 
                 //is it closed set?
-                //if(closedSet.indexOf(neigh) != -1) return 
-                if(neigh.classList.contains("visited")){
-                    return;
-                }
+                if(neigh.classList.contains("visited")){return;}
                 //is it an obstacle?
-                if(neigh.classList.contains("obstacle")) return   
+                if(neigh.classList.contains("obstacle")) {return};   
                 //is in openset?
                 if(neigh.classList.contains("open")){
-                    if(tmp_gScore >= neigh.dataset.gScore)return
+                    if(tmp_gScore >= neigh.dataset.gScore){return};
                 }
                 //else is nor in openSet nor in closedSet nor an obstacle
                 neigh.classList.add("open");
                 
-                neigh.dataset.gScore = tmp_gScore;
-                neigh.dataset.hScore = get_hScore(neigh, node_Goal);
+                neigh.dataset.gScore = tmp_gScore.toFixed(2);
+                neigh.dataset.hScore = get_hScore(neigh, node_Goal).toFixed(2);
                 
                 neigh.dataset.parent = [node_Current.dataset.row, node_Current.dataset.col];
-                neigh.dataset.fScore = neigh.dataset.gScore + neigh.dataset.hScore;
+                neigh.dataset.fScore = parseFloat(neigh.dataset.gScore) + parseFloat(neigh.dataset.hScore);
+                //neigh.innerText = parseFloat(neigh.dataset.fScore).toFixed(2);
                 openSet.push(neigh);
-                //showInfo(neigh.dataset.fScore);
                 
             });
-            //console.log("open - closed - sets:");
-            //console.log(openSet);
-            //console.log(closedSet);
-            //3 * 7 + 3 * 7 
             await sleep(0);
         }
         showInfo("No path found!");
@@ -272,26 +329,30 @@ document.getElementById("button_Run").addEventListener("click", async() =>
     }
 )
 
-document.getElementById("button_Random").addEventListener("click", () => {    
+
+
+document.getElementById("slider_Random").addEventListener("click", () => {    
        
-        //triggere reset button
-        let button_Reset = document.getElementById("button_Reset");
-        button_Reset.click();
+    //triggere reset button
+    let button_Reset = document.getElementById("button_Reset");
+    button_Reset.click();
 
-        showInfo("Randomising obstacles... ");
-        //make random obstcles
-        let cells = document.getElementsByClassName("Astar_cell");     
-        for(let cell of cells){
-            if(cell.closest('#Astar_menu') || cell.id === "goal" || cell.id === "start" ) continue
-            //if(cell.classList.contains("obstacle")) continue
+    showInfo("Randomising obstacles... ");
+    //make random obstcles
+    let cells = document.getElementsByClassName("Astar_cell");     
+    for(let cell of cells){
+        //is it a menu item, is it the goal||start cell? -> ignore 
+        if(cell.closest('#Astar_menu') || cell.id === "goal" || cell.id === "start" ) continue
+        //if(cell.classList.contains("obstacle")) continue
 
-            let rand = Math.random();
-            if(rand < 0.42){
-                cell.classList.toggle("obstacle");
-            }
+        let rand = Math.random();
+        if(rand < rand_Value){
+            cell.classList.toggle("obstacle");
         }
     }
+}
 )
+
 
 document.getElementById("button_Reset").addEventListener("click", () => {
         showInfo("Reset All");
@@ -314,7 +375,10 @@ document.getElementById("button_Reset").addEventListener("click", () => {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
+function removeElement(set,element){
+    let removedElement = openSet.splice(set.indexOf(element),1);
+    return removedElement[0];
+}
 //Reset 
 
 /*==========================================  ==========================================*/
@@ -325,7 +389,11 @@ function get_min_fScore(){
     let best_F = Number.MAX_SAFE_INTEGER;
     let best_Key = 0;
     for (let i = 0; i < openSet.length; i++) {
-        const tmp_f = openSet[i].fScore;
+        if(openSet[i].classList.contains("visited")){//making sure there is no visited nodes in the openset
+            removeElement(openSet,openSet[i]);
+            continue;
+        }
+        const tmp_f = parseFloat(openSet[i].dataset.fScore);
         if(tmp_f<best_F)
         {
             best_F = tmp_f;

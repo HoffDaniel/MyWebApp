@@ -11,6 +11,7 @@
 }
 #Astar_grid {  
   --grid_Size: 21;
+  --rand_Value: 0.42;
   height: 75%;
   width: 50%;
   margin: 10px;
@@ -19,16 +20,18 @@
   grid-template-rows: repeat(var(--grid_Size),1fr); 
   border-radius: 3px; 
   background-color: var(--Colour-800);
-  border: 2px solid var(--Colour-800);
-  
+  border: 2px solid var(--Colour-800);  
   gap: 2px;
 }
 
-#grid_Size{
+#slider_Value{
   text-align: center;
 }
 
 #Astar_menu{
+  background-color: var(--Colour-800);
+  padding: 10px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -51,13 +54,14 @@
   transition: 1s;
 }
 
-#Astar_menu button:hover{transform: translateY(-3px);
+#Astar_menu button:hover{
+  transform: translateY(-3px);
   background-color: var(--Colour-950);
   transition: 0.5s;
 }
 
 
-#slider{
+#slider_Random, #slider_Grid{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -79,13 +83,39 @@
   transition: opacity 0.5s ease-in;
 }
 .selected{
-  box-shadow: 0px 0px 3px 3px var(--Colour-800) !important;
+  background-color:var(--Colour-800)!important;
+  box-shadow: 0px 0px 3px 5px var(--Colour-800) !important;
+  transform: translateY(-3px);
+}
+
+#controls{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+
+}
+
+.selection_container{
+  display: grid;
+  grid-column: 1/-1;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  padding: 10px;
+  background-color: var(--Colour-900);
+  border-radius: 10px;
+
+}
+
+.selection_description{
+  background-color: var(--Colour-950);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 #legend{
   background-color: var(--Colour-950);
   display: grid;
   grid-template-columns: repeat(4,1fr) ;
+  grid-template-columns: 10% 40% 10% 40%;
   border-radius: 10px;
 }
 
