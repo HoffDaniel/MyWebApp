@@ -20,23 +20,37 @@
                 <div class="content-description">
                     <b>Description:</b><br><br>
                     This is a little A* search algorithm. 
-                    Select a start and goal cell and if you run 
+                    Select a start and goal cell and run 
                     the algorithm it will try and find a short path 
-                    and if there is obstacles it will try and avoid them
+                    and if there is obstacles it will go around them. 
 
                 </div>
-                <button id="button_Run">Run</button>  
-                <button id="button_Reset">Reset</button>  
-                <button id="button_Random">Random Obstacles</button>
-                <button id="slider">
-                    <span id="grid_Size"></span>
-                    <input type="range" min="10" max="50" id="grid_Sizer"> 
-                    </input>
-                </button>
-                <button id="start" onclick="selectionClick(event,'start')">Select Start</button>                
-                <button id="goal"  onclick="selectionClick(event,'goal')">Select Goal</button>  
-                <button class="Astar_cell obstacle selected"  onclick="selectionClick(event,'obstacle')"> Select Obstacle</button>
-                
+                <div id="controls">
+                    <button id="button_Run">Run</button>  
+                    <button id="button_Reset">Reset</button>  
+                    <button id="slider_Random">
+                        <span id="slider_Value"></span>
+                        <input type="range" min="0" max="1" step="0.01" id="slider_Input"></input>
+                    </button>
+                    
+                    <button id="slider_Grid"> 
+                        <span id="slider_Value"></span>
+                        <input type="range" min="10" max="50" id="slider_Input"></input>
+                    </button>
+
+                    <div class="selection_container">
+                        <div class="selection_description">Cell Selection:</div>
+                        <button id="start" onclick="cellSelectionClick(event,'start')"> Start</button>                
+                        <button id="goal"  onclick="cellSelectionClick(event,'goal')"> Goal</button>  
+                        <button class="Astar_cell obstacle selected"  onclick="cellSelectionClick(event,'obstacle')">  Obstacle</button>
+                    </div>
+                    <div class="selection_container">                        
+                        <div class="selection_description">Heuristic Selection:</div>
+                        <button class="selected" onclick="heuristicSelectionClick(event,'Euclidean')">Euclidean Distance</button>                
+                        <button onclick="heuristicSelectionClick(event,'Manhattan')">Manhattan Distance</button>  
+                        <button onclick="heuristicSelectionClick(event,'Diagonal')"> Diagonal Distance</button>
+                    </div>
+                </div>
                 <div id="legend">                   
                     <div class="Astar_cell legend-item" id="start"></div><div class="legend-label">Start</div>
                     <div class="Astar_cell legend-item" id="goal"></div><div class="legend-label">Goal</div>
