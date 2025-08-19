@@ -13,19 +13,17 @@ template.innerHTML =
         
 "<div class='navbar'>" +
  
-    "<a href='#' style='display:flex; gap: 10px;'> " +
-        "<span class='icon' onclick='Fun_Nav()'>&#x2630;</span>" +
-        "<img src='/resources/Logo/Logo_16.png' class='logo' onclick='Fun_Nav()'> " +
+    "<a style='display:flex; gap: 10px;' onclick='Fun_Nav()' role='button' tabindex='0'> " +
+        "<span class='icon'>&#x2630;</span>" +
+        "<img src='/resources/Logo/Logo_16.png' class='logo'> " +
     "</a>" +
     
     "<div class='nav-links' style='display: block;' >"+ 
-        "<a href='/index.html'>Home</a>" +
-        "<a href='/view/about.html'>About</a>" +
-        "<a href='/view/projects.html'>Portfolio </a>" +        
+        "<a href='/index.html#intro'>Home</a>" +
+        "<a href='/index.html#about-me'>About</a>" +
+        "<a href='/index.html#projects'>Projects </a>" +        
         "<div class='dropdown'>" + 
-            "<button class='dropbtn'>SandBox " + 
-                
-            "</button>" +
+            "<button class='dropbtn' onclick=\"location.href='/index.html#sandbox'\">SandBox</button>" +
             "<div class='dropdown-content'>" +
                 "<a href='/view/sandbox.html'>Sand1</a>" +
                 "<a href='/view/sandbox2.html'>Sand2</a>" +
@@ -33,12 +31,15 @@ template.innerHTML =
                 "<a href='/view/sandbox_Golden.html'>Golden Spiral</a>"  +
             "</div>" +
         "</div>" +
-        "<a href='/view/contact.html'>Contact</a>" +
+        "<a href='/index.html#contact'>Contact</a>" +
     "</div>" +
 "</div>"+
 "</div>";
 
-document.body.appendChild(template.content);
+//document.body.appendChild(template.content);
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('nav-slider').appendChild(template.content);
+});
 
 function Fun_Nav(){
     var dropdown_Menu = document.getElementsByClassName("nav-links")[0];
@@ -65,31 +66,3 @@ function Fun_Nav(){
         //dropdown_Menu.classList.toggle('active');
     }
 }
-
-/* non stringed HTML
-<div id="header">
-        
-        <div class="navbar">
-            <a href="#">
-                <img src="/images/MOO - Copy.png" class="logo" onclick="Fun_Nav()"><br> Daniel HOFFMANN
-            </a>
-            
-            <div class="nav-links" style="display: block;" >
-                <a href="index2.html">Home</a>
-                <a href="/index.html#about">About</a>
-                <a href="#">Projects</a>
-                
-                <div class="dropdown">
-                    <button class="dropbtn">SandBox 
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="/view/sandbox.html">Sand1</a>
-                        <a href="/view/sandbox2.html">Sand2</a>
-                    </div>
-                </div>
-                <a href="#">Contact</a>
-            </div>
-        </div>
-    </div>
-    */

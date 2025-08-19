@@ -1,6 +1,4 @@
-  /*==========================================  ==========================================*/
-  /*========================================== Header / Navbar ==========================================*/
-  /*==========================================  ==========================================*/
+  /* ========================================== Header / Navbar ========================================== */
   #header{
     /*width: max-content;*/
     width: 100%;
@@ -9,7 +7,7 @@
     /*background-image: url(images/Background1.png);*/
     background-size: cover;
     background-position: center;
-    z-index: 999;   
+    z-index: 9999;   
   }
 
   a{
@@ -23,15 +21,17 @@
   .logo{
     height: 42px;
     padding: 3px;
-    border-radius: 10px;
-    border: 3px solid var(--Colour-800);
+    background-color: var(--Colour-200);
+    border: 1px solid var(--Colour-200);
     animation: orbit 2.7s linear infinite;
   }
 
   .navbar {
     overflow: hidden;    
     background-color: var(--Colour-900);
-    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom: 1px solid var(--Colour-200);
+    border-left: 1px solid var(--Colour-200);
     display: block;
     
   }
@@ -55,7 +55,8 @@
   @keyframes slide-right{
     0%{
         /*width: 50%;*/
-        left: 15%;
+        /*left: 15%;*/
+        left: 0;
     }
     100%{
         /*width: 100%;*/
@@ -70,7 +71,7 @@
     }
     100%{
         /*width: 100%;*/
-        left: 15%;
+        left: 0;
     }
   }
 
@@ -86,13 +87,13 @@
   .start{
     animation-name: slide-left;
     animation-duration: 1s;
-    left: 15%;
+    left: 0%;
   }
 
   .active{
     animation-name: slide-left;
     animation-duration: 1s;
-    left: 15%;
+    left: 0%;
   }
 
   .inactive{
@@ -121,34 +122,33 @@
   }
   .dropdown .dropbtn::after{
     content: '🏖️';
-    content: '▼';
+    content: ' ▼';
     transition: 0.5s;
   }
 
   .dropdown:hover .dropbtn::after{
-    content: '▲';
+    content: ' ▲';
     transition: 2.5s;
   }
   
   .navbar a:hover, .dropdown:hover .dropbtn {   
     background-color: var(--Colour-700);
     color: var(--Colour-200);     
-    border-color: none;  /*var(--Colour-200);*/
-    
+    border-color: none;  /*var(--Colour-200);*/    
     /*font-size: 19px;*/
     /*transform: scale(1.1,1.1);
     transform: translateY(-1px);*/
     transform: translateX(3px);
     transform: translateY(-3px);
-    transition: 0.5s;
-    
+    transition: 0.5s;    
   }
+
+  
   
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color:transparent;
-    
+    background-color:transparent;    
     min-width: 160px;
     /*box-shadow: 0px 8px 16px 0px var(--ColourShadow);*/
     z-index: 1;
@@ -158,7 +158,6 @@
     float: none;
     color: black;
     background-color:var(--Colour-200);
-
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -174,4 +173,3 @@
     display: block;
     transition: 1s;
   }
-
