@@ -1,0 +1,232 @@
+<!-- sandbox_Three.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Sandbox Island</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="/scripts/Header.js" type="text/javascript" defer></script>
+</head>
+<body>
+  <div id="nav-slider"></div>
+  <div id="bg-water"></div>
+  <script type="importmap">
+    {
+    "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+    }
+  </script>
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+    import { Water } from 'https://unpkg.com/three@0.160.0/examples/jsm/objects/Water2.js';
+    //import { Water } from 'https://unpkg.com/three@0.160.0/examples/jsm/objects/Water.js';
+    import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+    import { Sky } from 'https://unpkg.com/three@0.160.0/examples/jsm/objects/Sky.js';
+    import { FontLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/FontLoader.js';
+    import { TextGeometry } from 'https://unpkg.com/three@0.160.0/examples/jsm/geometries/TextGeometry.js';
+
+    const root = document.getElementById('bg-water');
+
+    // --- scene / camera / renderer ---
+    const scene  = new THREE.Scene();
+    // ✅ keep canvas transparent to page; let the sky object render, not a flat background
+    // (if you want a visible sky gradient instead, set: scene.background = envRT.texture later)
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    root.appendChild(renderer.domElement);
+
+    const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 5000);
+    camera.position.set(0, 70, 180);
+    camera.lookAt(0, 0, 0);
+
+    //const controls = new OrbitControls(camera, renderer.domElement);
+    //controls.enableDamping = true;
+
+    // optional: a tiny far object so reflections are obvious at first
+    // const box = new THREE.Mesh(new THREE.BoxGeometry(20,20,20), new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.6 }));
+    // box.position.set(-300, 10, -600); scene.add(box);
+
+    // --- sky + environment ---
+    const sky = new Sky();
+    sky.scale.setScalar(10000);
+    scene.add(sky);
+
+    const skyU = sky.material.uniforms;
+    skyU.turbidity.value = 10;
+    skyU.rayleigh.value = 2;
+    skyU.mieCoefficient.value = 0.005;
+    skyU.mieDirectionalG.value = 0.7;
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const sunDir = new THREE.Vector3();
+    function setSun(elev = 12, azim = 145){
+      const phi = THREE.MathUtils.degToRad(90 - elev);
+      const theta = THREE.MathUtils.degToRad(azim);
+      sunDir.setFromSphericalCoords(1, phi, theta);
+      sky.material.uniforms.sunPosition.value.copy(sunDir);
+    }
+    setSun(0, 160); // place the sun first
+
+    // now bake the env map (so it includes the sun)
+    let envRT = pmrem.fromScene(sky);
+    scene.environment = envRT.texture;
+
+    // --- fog + water plane ---
+    scene.fog = new THREE.Fog(0x0f3046, 1000, 35000);
+
+    const texLoader = new THREE.TextureLoader();
+    const local0 = '../resources/textures/Water_1_M_Normal.jpg';
+    const local1 = '../resources/textures/Water_2_M_Normal.jpg';
+
+    const loadLocal = (u) => new Promise((res, rej) =>
+      texLoader.load(u, t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; res(t); }, undefined, e => { console.error('Texture load failed:', u); rej(e); })
+    );
+
+    function flatNormal(){
+      const size = 2, data = new Uint8Array(size*size*3);
+      for (let i=0;i<size*size;i++){ data[i*3]=128; data[i*3+1]=128; data[i*3+2]=255; }
+      const tex = new THREE.DataTexture(data, size, size, THREE.RGBFormat);
+      tex.needsUpdate = true; tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+      return tex;
+    }
+
+    let water = null;
+    Promise.all([
+      loadLocal(local0).catch(() => flatNormal()),
+      loadLocal(local1).catch(() => flatNormal()),
+    ]).then(([normal0, normal1]) => {
+      const geom = new THREE.PlaneGeometry(10000, 10000);
+      water = new Water(geom, {
+        color: new THREE.Color('#58b9ff'),       // brighter than page bg
+        scale: 7.2,                               // wave detail scale
+        flowDirection: new THREE.Vector2(0.6, 0.3),
+        normalMap0: normal0,
+        normalMap1: normal1
+      });
+      water.rotation.x = -Math.PI/2;
+      scene.add(water);
+      if (water.material.uniforms.reflectivity) {
+        water.material.uniforms.reflectivity.value = 0.25; // try 0.12 – 0.25
+      }
+      water.material.uniforms.flowDirection.value.set(0.25, 0.05);
+      //normal0.repeat.set(4, 4);
+      //normal1.repeat.set(2, 2);
+      // tell water where the sun is (for the glint)
+      // water.material.uniforms.sunDirection.value.copy(sunDir).normalize();
+      // console.log('Water2 uniforms:', Object.keys(water.material.uniforms));
+
+      // --- 3D “WORK IN PROGRESS” text ---
+      let wipTextGroup = null;
+
+      async function addWIPText() {
+        const loader = new FontLoader();
+
+        // Use local font if you save it (faster + no CORS):
+        // const font = await loader.loadAsync('/resources/fonts/helvetiker_regular.typeface.json');
+
+        // CDN fallback:
+        const font = await loader.loadAsync(
+          'https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_regular.typeface.json'
+        );
+
+        const geo = new TextGeometry('WORK IN PROGRESS', {
+          font,
+          size: 16,           // text height (world units)
+          height: 3,          // extrusion depth
+          curveSegments: 8,
+          bevelEnabled: true,
+          bevelThickness: 0.6,
+          bevelSize: 0.4,
+          bevelSegments: 2
+        });
+
+        // center the geometry so it pivots nicely
+        geo.computeBoundingBox();
+        geo.center();
+
+        const mat = new THREE.MeshPhysicalMaterial({
+          color: 0x420420,//0x008081,
+          color: 0x008081,//0x008081,
+          roughness: 0,
+          metalness: 0.9,
+          clearcoat: 1,
+          clearcoatRoughness: 0.1,
+          envMapIntensity: 1 // picks up the Sky PMREM reflections
+        });
+
+        const text = new THREE.Mesh(geo, mat);
+
+        // subtle black “outline” for contrast (scaled tiny bit, back faces)
+        // const outline = new THREE.Mesh(
+        //   geo,
+        //   new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide })
+        // );
+        // outline.scale.multiplyScalar(1.03);
+
+        wipTextGroup = new THREE.Group();
+        //wipTextGroup.add(outline, text);
+        wipTextGroup.add(text);
+
+        // place just above the water at the world origin
+        wipTextGroup.position.set(0, 18, 0);
+        scene.add(wipTextGroup);
+      }
+
+      addWIPText().catch(console.error);
+
+
+      // animate
+      const clock = new THREE.Clock();
+      let active = true;
+      document.addEventListener('visibilitychange', () => active = !document.hidden);
+
+      (function loop(){
+        requestAnimationFrame(loop);
+        if (!active) return;
+        if (water?.material?.uniforms?.time) {
+          water.material.uniforms.time.value += clock.getDelta();
+        }
+
+        // gentle bob + micro-sway
+        if (wipTextGroup) {
+          const t = performance.now() * 0.0001;
+          wipTextGroup.position.y = 18 + Math.sin(t * 1.2) * 1.6;
+          wipTextGroup.rotation.y = Math.sin(t * 2) * 1.2;
+        }
+
+        //controls.update();
+        renderer.render(scene, camera);
+      })();
+    });
+
+    addEventListener('resize', () => {
+      camera.aspect = innerWidth/innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+  </script>
+  <!-- WORK IN PROGRESS -->
+  <script type="module">
+    import { showWIP } from '/scripts/wip-overlay.js';
+    import { hideWIP } from '/scripts/wip-overlay.js';
+
+    showWIP({
+      message: 'New 3D playground in progress',
+      sub: 'Shipping updates here soon. Enjoy the ocean in the meantime!',
+      blockClicks: true,   // set true if you want to block interactions
+      alpha: 0.42,          // overlay opacity (0–1)
+      showClose: true      // set true to show an “X” button
+    });
+
+    hideWIP();
+  </script>
+
+</body>
+</html>

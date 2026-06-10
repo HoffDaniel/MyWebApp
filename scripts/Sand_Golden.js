@@ -41,4 +41,3 @@ items.forEach(createEllipse);
 window.addEventListener("resize", () => {
   items.forEach(updateEllipse);
 });
-

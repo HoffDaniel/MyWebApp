@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     el.style.pointerEvents = pe;
   }
 
-  
+
 
 
   // --- CAROUSEL LOGIC ---

@@ -7,21 +7,22 @@
   gap: 10px;
   height: 800px;
   justify-content: center;   /* Horizontally centers the child element */
-  align-items: center; 
+  align-items: center;
 }
-#Astar_grid {  
+#Astar_grid {
   --grid_Size: 21;
   --rand_Value: 0.42;
-  height: 75%;
-  width: 50%;
+  --animation_Delay: 0;
+  height: 90%;
+  width: 60%;
   margin: 10px;
   display: grid;
   grid-template-columns: repeat(var(--grid_Size),1fr);
-  grid-template-rows: repeat(var(--grid_Size),1fr); 
-  border-radius: 3px; 
+  grid-template-rows: repeat(var(--grid_Size),1fr);
+  border-radius: 3px;
   background-color: var(--Colour-800);
-  border: 2px solid var(--Colour-800);  
-  gap: 2px;
+  border: 5px solid var(--Colour-800);
+  gap: 1px;
 }
 
 #slider_Value{
@@ -34,7 +35,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
   gap: 10px;
 }
 
@@ -61,7 +62,7 @@
 }
 
 
-#slider_Random, #slider_Grid{
+#slider_Random, #slider_Grid, #slider_Speed{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -88,17 +89,17 @@
   transform: translateY(-3px);
 }
 
+.disabled { opacity:.5; cursor:not-allowed; }
+
 #controls{
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 10px;
 
 }
 
 .selection_container{
   display: grid;
-  grid-column: 1/-1;
-  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
   padding: 10px;
   background-color: var(--Colour-900);
   border-radius: 10px;
@@ -131,46 +132,42 @@
 }
 
 .Astar_cell{
-  background-color: var(--Colour-300);
+  background-color: var(--cell-color, var(--Colour-800));
   border-radius: 3px;
   /**/transition: 1s;/**/
 
 }
 #start{
-  background-color: rgb(35, 192, 61) !important;
+  --cell-color: rgb(0, 242, 42);
   overflow: auto;
   resize: both;
 }
 
 #goal{
-  background-color: rgb(197, 45, 184) !important;
+  --cell-color: rgb(197, 45, 184);
   overflow: auto;
   resize: both;
 }
 
 .Astar_cell.path{
-  background-color: rgb(17, 80, 1) !important;
+  --cell-color: var(--ColourLogo);
 }
-
 .Astar_cell.visited{
-  background-color: orangered;
-  
-  
-}
-
-.Astar_cell.obstacle{
-  background-color: brown !important;
- 
-  box-shadow: -2px -2px 2px 2px inset black;
-}
-
-.Astar_cell.current{
-  background-color: rgb(65, 42, 165) !important;
-  
-  /*transition: 1s;/**/
+  --cell-color: var(--Colour-600);
 }
 
 .Astar_cell.open{
-  background-color: yellow;  
+  --cell-color: var(--Colour-400);;
 }
 
+.Astar_cell.obstacle{
+  --cell-color: var(--Colour-1000);
+
+  box-shadow: -3px -3px 1px 1px inset black;
+}
+
+.Astar_cell.current{
+  --cell-color: var(--Colour-200);
+
+  /*transition: 1s;/**/
+}

@@ -9,19 +9,19 @@
 
 .sand-golden{
   grid-column: 1/-1 ;
-  margin: 42px;
+  margin: 100px;
   height: 700px;
   width: 1050px;/* width = height + (height/2) */
   display: grid;
   /*Got the grid ratios from here: https://codepen.io/bobby1030/pen/EWmyZW*/
   grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
   grid-template-rows: 61.8% 9.02% 5.58% 23.6%;
-  grid-template-areas: 
+  grid-template-areas:
     "A B B B"
     "A E F C"
     "A E G C"
     "A D D C";
-  
+
 }
 
 svg{/*
@@ -47,12 +47,12 @@ svg{/*
 .item.H{
   position: absolute;
   width: 100%;
-  height: 50%; 
+  height: 50%;
   background-color: transparent;
   border: 42px solid var(--ColourLogo);
   border: 69px solid black;
   border: 42px solid var(--Colour-950);
-  
+
   color: var(--ColourLogo);
 }
 
@@ -62,7 +62,7 @@ svg{/*
   box-shadow: -7px 0px 4px 2px var(--Colour-800) inset;
 }
 .item.H.bot{
-  bottom: 0;  
+  bottom: 0;
   border-top-width: 21px ;
   border-bottom: none;
   box-shadow: -7px 7px 5px 2px var(--Colour-800) inset;
@@ -83,7 +83,7 @@ svg{/*
   grid-area: B;
 }
 .item.c{
-  grid-area: C;  
+  grid-area: C;
 }
 .item.d{
   grid-area: D;
@@ -93,7 +93,7 @@ svg{/*
 }
 .item.f{
   grid-area: F;
-  
+
 }
 .item.g{
   grid-area: G;
@@ -102,8 +102,8 @@ svg{/*
   background-color: var(--Colour-400);
   background-color: transparent;
   background-color: var(--Colour-400);
-  
-  
+
+
   transform: scale(1.01);
   transition: 0.5s;
 }

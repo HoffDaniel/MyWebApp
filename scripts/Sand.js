@@ -20,7 +20,7 @@ let isMouseInsideCanvas
 canvas.addEventListener("mouseenter", () => {
     isMouseInsideCanvas = true;
   });
-  
+
   canvas.addEventListener("mouseleave", () => {
     isMouseInsideCanvas = false;
   });
@@ -57,7 +57,7 @@ class SandParticle {
     //If dont want to influence the particles when outside canvas
     //if(!isMouseInsideCanvas) return;
 
-    // apply repelling force from mouse cursor    
+    // apply repelling force from mouse cursor
     this.applyRepellentForce(mouseX, mouseY, 100, 0.25);
 
     // update position and velocity based on acceleration
@@ -95,8 +95,8 @@ function init() {
         const color = "#c2b280";
         particlesArray.push(new SandParticle(x, y, radius, color));
     }
- 
-  
+
+
 }
 
 // animate particles

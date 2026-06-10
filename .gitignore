@@ -1,3 +1,10 @@
-resources/
+# Keep runtime site assets in Git. Hostinger needs files under resources/.
+
+# Source-only and local working assets.
 resources_dev/
 designs/
+
+# Local/editor noise.
+.DS_Store
+Thumbs.db
+*.log

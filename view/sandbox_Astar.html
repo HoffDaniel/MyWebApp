@@ -1,78 +1,85 @@
-<!-- A* search algorithm-->
+<!-- A* Pathfinding Visualizer -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astar</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="/scripts/Header.js" type="text/javascript" defer> </script>
-    
-    
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A* Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="/scripts/Header.js" type="text/javascript" defer></script>
 </head>
 <body>
-    <div id="nav-slider"></div>
-    <div id="content">
-        <div class="title"> A * </div>
-        <div id="Astar_container">
-            <div id="Astar_grid"></div>
-            <div id="Astar_menu">
-                <div class="content-description">
-                    <b>Description:</b><br><br>
-                    This is a little A* search algorithm. 
-                    Select a start and goal cell and run 
-                    the algorithm it will try and find a short path 
-                    and if there is obstacles it will go around them. 
+  <div id="nav-slider"></div>
+  <div id="content">
+    <div class="title">Pathfinding</div>
+    <div id="Astar_container">
+      <div id="Astar_grid"></div>
+      <div id="Astar_menu">
+        <div class="content-description">
+          <b>Description:</b><br /><br />
+          Interactive A* algorithm visualization.<br />
+          Set a start & goal node, draw obstacles, and press <b>Run</b>.<br />
+        </div>
 
-                </div>
-                <div id="controls">
-                    <button id="button_Run">Run</button>  
-                    <button id="button_Reset">Reset</button>  
-                    <button id="slider_Random">
-                        <span id="slider_Value"></span>
-                        <input type="range" min="0" max="1" step="0.01" id="slider_Input"></input>
-                    </button>
-                    
-                    <button id="slider_Grid"> 
-                        <span id="slider_Value"></span>
-                        <input type="range" min="10" max="50" id="slider_Input"></input>
-                    </button>
+        <div id="controls">
+            <button id="button_Run">Run</button>
+            <button id="button_Reset">Reset</button>
+            <button id="button_Clear">Clear All</button>
+            <button id="slider_Random">
+              <span id="slider_Value"></span>
+              <input type="range" min="0" max="1" step="0.01" id="slider_Input" />
+            </button>
 
-                    <div class="selection_container">
-                        <div class="selection_description">Cell Selection:</div>
-                        <button id="start" onclick="cellSelectionClick(event,'start')"> Start</button>                
-                        <button id="goal"  onclick="cellSelectionClick(event,'goal')"> Goal</button>  
-                        <button class="Astar_cell obstacle selected"  onclick="cellSelectionClick(event,'obstacle')">  Obstacle</button>
-                    </div>
-                    <div class="selection_container">                        
-                        <div class="selection_description">Heuristic Selection:</div>
-                        <button class="selected" onclick="heuristicSelectionClick(event,'Euclidean')">Euclidean Distance</button>                
-                        <button onclick="heuristicSelectionClick(event,'Manhattan')">Manhattan Distance</button>  
-                        <button onclick="heuristicSelectionClick(event,'Diagonal')"> Diagonal Distance</button>
-                    </div>
-                </div>
-                <div id="legend">                   
-                    <div class="Astar_cell legend-item" id="start"></div><div class="legend-label">Start</div>
-                    <div class="Astar_cell legend-item" id="goal"></div><div class="legend-label">Goal</div>
-                    <div class="Astar_cell legend-item"></div><div class="legend-label">Cell</div>
-                    <div class="Astar_cell path legend-item"></div><div class="legend-label">Path</div>
-                    <div class="Astar_cell open legend-item"></div><div class="legend-label">OpenSet</div>
-                    <div class="Astar_cell visited legend-item"></div><div class="legend-label">ClosedSet</div>
-                    <div class="Astar_cell obstacle legend-item"></div><div class="legend-label">Obstacle</div>
-                    <div class="Astar_cell current legend-item"></div><div class="legend-label">Current</div>
-                </div>
+            <button id="slider_Grid">
+              <span id="slider_Value"></span>
+              <input type="range" min="10" max="100" step="1" id="slider_Input" />
+            </button>
+
+            <button id="slider_Speed">
+              <span id="slider_Value"></span>
+              <input type="range" min="0" max="1000" step="10" id="slider_Input" />
+            </button>
+
+            <div class="selection_container" id="cell-group">
+              <div class="selection_description">Cell Type:</div>
+              <button id="start" onclick="cellSelectionClick(event,'start')">Start</button>
+              <button id="goal" onclick="cellSelectionClick(event,'goal')">Goal</button>
+              <button class="Astar_cell obstacle selected" onclick="cellSelectionClick(event,'obstacle')">Obstacle</button>
+            </div>
+
+            <div class="selection_container" id="algorithm-group">
+                <div class="selection_description">Algorithm:</div>
+                <button onclick="algorithmSelectionClick(event,'Dijkstra')">Dijkstra</button>
+                <button class="selected" onclick="algorithmSelectionClick(event,'Astar')">A*</button>
+                <button onclick="algorithmSelectionClick(event,'Greedy')">Greedy</button>
+            </div>
+
+            <div class="selection_container" id="heuristic-group">
+              <div class="selection_description">Heuristic:</div>
+              <button class="selected" onclick="heuristicSelectionClick(event,'Euclidean')">Euclidean</button>
+              <button onclick="heuristicSelectionClick(event,'Manhattan')">Manhattan</button>
+              <button onclick="heuristicSelectionClick(event,'Diagonal')">Diagonal</button>
             </div>
         </div>
-            
-        
-        <div id = "info">
-            info
-        </div>
-        
-        
-    </div> 
-    <script src="/scripts/Sand_Astar.js"></script>
-</body>
 
+        <div id="legend">
+            <div class="Astar_cell legend-item" id="start"></div><div class="legend-label">Start</div>
+            <div class="Astar_cell legend-item" id="goal"></div><div class="legend-label">Goal</div>
+            <div class="Astar_cell legend-item"></div><div class="legend-label">Cell</div>
+            <div class="Astar_cell path legend-item"></div><div class="legend-label">Path</div>
+            <div class="Astar_cell open legend-item"></div><div class="legend-label">OpenSet</div>
+            <div class="Astar_cell visited legend-item"></div><div class="legend-label">ClosedSet</div>
+            <div class="Astar_cell obstacle legend-item"></div><div class="legend-label">Obstacle</div>
+            <div class="Astar_cell current legend-item"></div><div class="legend-label">Current</div>
+        </div>
+
+        <div id="runtime-stats"></div>
+      </div>
+    </div>
+
+    <div id="info">info</div>
+  </div>
+  <script src="/scripts/Sand_Astar.js"></script>
+</body>
 </html>

@@ -18,23 +18,35 @@
   --ColourLogo: gold;
   --ColourLogoGrad: radial-gradient(circle, #FFD700, #FFA500);
 
-
+  --colour-docks:      #573811;
+  --colour-docks:      #002C49;
+  --colour-background:      #002C49;
+  --colour-card-bg:         #22537E;
+  --colour-accent-light:    #B8DBE9;
+  --colour-accent:          #4F9DC1;
+  --colour-hover:           #30789C;
+  --colour-highlight:       #87C0D9;
+  --colour-text-light:      #F0F8FB;
+  --colour-text-subtle:     #D9ECF4;
+  --colour-link:            #F0F8FB;
+  --colour-header:          #002C49;
 
   /*Colour Palette*/
   /*Usefull colour generator https://uicolors.app/create*/
-    
-  --Colour-50:  rgb(240 248 251);
-  --Colour-100: rgb(217 236 244);
-  --Colour-200: rgb(184 219 233);
-  --Colour-300: rgb(135 192 217);
-  --Colour-400: rgb(79 157 193 );
-  --Colour-500: rgb(48 120 156 );
-  --Colour-600: rgb(45 104 141 );
-  --Colour-700: rgb(0, 44, 73);
-  --Colour-800: rgb(39, 120, 177);
-  --Colour-900: rgb(34, 83, 126);
-  --Colour-950: rgb(17, 45, 70);
-  
+
+  --Colour-50:  rgb(240 248 251);   /* Lightest */
+  --Colour-100: rgb(217 236 244);   /* Light text */
+  --Colour-200: rgb(184 219 233);   /* Light accents */
+  --Colour-300: rgb(135 192 217);   /* Mid accents */
+  --Colour-400: rgb(79 157 193 );   /* CTA buttons, Primary */
+  --Colour-500: rgb(48 120 156 );   /* Hover/Active States */
+  --Colour-600: rgb(45 104 141 );   /* Navigation bar? */
+  --Colour-700: rgb(0, 44, 73);     /* Background (Dark Blue) */
+  --Colour-800: rgb(39, 120, 177);  /* Section background */
+  --Colour-900: rgb(34, 83, 126);   /* Cards */
+  --Colour-950: rgb(17, 45, 70);    /* Text boxes / deepest */
+  --Colour-1000: #2c3e50;    /* / deepest */
+
 }
 
 html {
@@ -56,35 +68,35 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--Colour-200);     
+  background: var(--Colour-200);
   box-shadow: 0px 0px 1px 1px var(--ColourShadow) inset;/* */
-  
+
   box-shadow: 0px 0px 1px 1px var(--Colour-300) inset;/* */
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--Colour-950);  
-  border-radius: 20px;       
-  border: 1px solid var(--Colour-200);  
+  background-color: var(--Colour-950);
+  border-radius: 20px;
+  border: 1px solid var(--Colour-200);
 }
-  
+
 p{
   line-height: 24px;
 }
 a{
-  
+
   text-decoration: none;
   color:var(--ColourLink);
   transition: 1s;
 }
 a:hover{
-  
+
   transform: translateY(-3px) !important;
   transition: 0.5s;
 }
 
 a.content-link {
   font-size: 18px;
-  background-color: var(--Colour-900) !important; 
+  background-color: var(--Colour-900) !important;
   border-radius: 10px;
   padding: 8px 16px;
   width: max-content;
@@ -93,15 +105,22 @@ a.content-link {
   margin: 16px auto 0;  /* <== Center horizontally */
   display: block;       /* <== Required for margin auto to work */
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 i{
   transform: translateY(-3px);
 }
 
+#bg-water{
+  position: fixed;
+  inset: 0;
+  z-index: 0;          /* behind your UI */
+}
+
 /* ========================================== Content ========================================== */
 
-#content{    
+#content{
   display: grid;
   grid-template-columns: repeat(2,1fr);
   grid-auto-rows: auto;
@@ -137,5 +156,3 @@ i{
   color: var(--Colour-200);
   border-radius: 10px;
 }
-
-
